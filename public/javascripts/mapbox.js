@@ -41,10 +41,10 @@ const map = new mapboxgl.Map({
 });
 
 // demo adding a pop up
-const popup = new mapboxgl.Popup({ closeButton: true });
-popup.addTo(map);
-popup.setLngLat([13.405, 52.52]);
-popup.setMaxWidth("400px");
-popup.setHTML(
-	`<h2>Click here for more info!</h2> <button>see the world</button>`
-);
+// const popup = new mapboxgl.Popup({ closeButton: true });
+// popup.addTo(map);
+// popup.setLngLat([13.405, 52.52]);
+// popup.setMaxWidth("400px");
+// popup.setHTML(
+// 	`<h2>Click here for more info!</h2> <button>see the world</button>`
+// );

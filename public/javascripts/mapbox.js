@@ -1,12 +1,5 @@
 var userCoordinates = document.getElementById('userCoordinates');
-
-function onDragEnd() {
-	var lngLat = userMarker.getLngLat();
-	console.log(lngLat)
-	userCoordinates.style.display = 'block';
-	userCoordinates.innerHTML =
-	'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
-}
+const popup = new mapboxgl.Popup({ closeButton: true });
 
 axios.get('/rawdata')
 	.then(response => {
@@ -59,13 +52,48 @@ let userMarker = new mapboxgl.Marker({
 userMarker.setLngLat([13.402,52.473])
 userMarker.addTo(map);
  
-userMarker.on('dragend', onDragEnd);
+// userMarker.on('dragend', onDragEnd);
+
+userMarker.on("dragend", (data) => {
+	// console.log("hello? Is it data?", data.target.getLngLat());
+	popup.addTo(map);
+	popup.setLngLat(data.target.getLngLat());
+	popup.setMaxWidth("400px");
+	popup.setHTML(
+		`<h2>What a location</h2> <h3>location: ${data.target.getLngLat()} </h3>`)
+});
+
+// function onDragEnd(marker) {
+// 	var lngLat = marker.getLngLat();
+// 	console.log(lngLat)
+// 	// userCoordinates.style.display = 'block';
+// 	// userCoordinates.innerHTML =
+// 	// 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+// 	console.log("hello? Is it data?", marker.target.getLngLat());
+			// popup.addTo(map);
+			// popup.setLngLat(data.target.getLngLat());
+			// popup.setMaxWidth("400px");
+			// popup.setHTML(
+			// 	`<h2>What a location</h2> <h3>location: ${data.target.getLngLat()} </h3>`)
+// }
+
+
+
+// first do the console.log and then do the rest of the stuff
+	// marker.on("dragend", (data) => {
+	// 	// console.log("hello? Is it data?", data.target.getLngLat());
+	// 	popup.addTo(map);
+	// 	popup.setLngLat(data.target.getLngLat());
+	// 	popup.setMaxWidth("400px");
+	// 	popup.setHTML(
+	// 		`<h2>What a location</h2> <h3>location: ${data.target.getLngLat()} </h3>`
+	// );
 
 // demo adding a pop up
-// const popup = new mapboxgl.Popup({ closeButton: true });
+const popup = new mapboxgl.Popup({ closeButton: true });
 // popup.addTo(map);
 // popup.setLngLat([13.405, 52.52]);
 // popup.setMaxWidth("400px");
 // popup.setHTML(
-// 	`<h2>Click here for more info!</h2> <button>see the world</button>`
+	// `<h2>Click here for more info!</h2> <button>see the world</button>`
 // );

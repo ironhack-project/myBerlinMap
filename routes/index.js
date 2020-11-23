@@ -31,4 +31,14 @@ router.get('/search', (req,res,next) => {
   res.render ('search')
 });
 
+// router.get('/search', (req, res, next) => {
+//   // here we want to call the api
+//   axios.get('https://api.quandoo.com/v1/merchants?place=Berlin&radius=10&capacity=2&offset=0&limit=10000')
+//     .then(response => {
+//       // console.log(response.data.merchants);
+//       const restaurantList = response.data.merchants;
+//       res.render('search', { restaurantList })
+//     })
+// });
+
 module.exports = router;

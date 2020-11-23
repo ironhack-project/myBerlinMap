@@ -61,36 +61,29 @@ userMarker.on("dragend", (data) => {
 	popup.setMaxWidth("400px");
 	popup.setHTML(
 		`<h2>What a location</h2> <h3>location: ${data.target.getLngLat()} </h3>`)
+	axios.get('/rawdata')
+		.then(response => {
+			let coordinates = response.data
+			coordinates.forEach((location) => {
+		// console.log(location);
+		// https://docs.mapbox.com/mapbox-gl-js/api/markers/
+			let newMarker = new mapboxgl.Marker({
+				scale: 1,
+				draggable: false,
+				color: "purple",
+				rotation: 10,
+			});
+			newMarker.setLngLat(location);
+			newMarker.addTo(map);
+		});
+	});
 });
 
-// function onDragEnd(marker) {
-// 	var lngLat = marker.getLngLat();
-// 	console.log(lngLat)
-// 	// userCoordinates.style.display = 'block';
-// 	// userCoordinates.innerHTML =
-// 	// 'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
-// 	console.log("hello? Is it data?", marker.target.getLngLat());
-			// popup.addTo(map);
-			// popup.setLngLat(data.target.getLngLat());
-			// popup.setMaxWidth("400px");
-			// popup.setHTML(
-			// 	`<h2>What a location</h2> <h3>location: ${data.target.getLngLat()} </h3>`)
-// }
 
 
-
-// first do the console.log and then do the rest of the stuff
-	// marker.on("dragend", (data) => {
-	// 	// console.log("hello? Is it data?", data.target.getLngLat());
-	// 	popup.addTo(map);
-	// 	popup.setLngLat(data.target.getLngLat());
-	// 	popup.setMaxWidth("400px");
-	// 	popup.setHTML(
-	// 		`<h2>What a location</h2> <h3>location: ${data.target.getLngLat()} </h3>`
-	// );
 
 // demo adding a pop up
-const popup = new mapboxgl.Popup({ closeButton: true });
+// const popup = new mapboxgl.Popup({ closeButton: true });
 // popup.addTo(map);
 // popup.setLngLat([13.405, 52.52]);
 // popup.setMaxWidth("400px");

@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
-const axios = require('axios');
+const axios = require('axios'); 
+let coordinates
 
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -20,6 +21,12 @@ router.get('/', (req, res, next) => {
       const restaurantList = response.data.merchants;
       res.render('index', { restaurantList })
     })
+});
+
+
+router.get('/rawdata', (req,res,next) => {
+  // console.log(coordinates);
+  return res.json (coordinates)
 });
 
 module.exports = router;

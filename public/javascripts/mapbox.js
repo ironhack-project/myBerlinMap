@@ -100,9 +100,10 @@ function zoomAndDisplayName (marker) {
 		
 		// adding text to our Div
 		const listingsDiv = document.getElementById('listings');
+		listingsDiv.innerHTML = "";
 
 		// new api call getting the restaurants according to droppedPin range
-		axios.get(`https://api.quandoo.com/v1/merchants?centerPoint=${droppedPin.lat}%2C%20${droppedPin.lng}&radius=1&capacity=2&offset=0&limit=20`)
+		axios.get(`https://api.quandoo.com/v1/merchants?centerPoint=${droppedPin.lat}%2C%20${droppedPin.lng}&radius=1&capacity=2&offset=0&limit=15`)
     .then(response => {
 
 			response.data.merchants.forEach((merchant) => {
@@ -119,7 +120,6 @@ function zoomAndDisplayName (marker) {
 
 					// adding text to our Div
 					listingsDiv.innerHTML += `${merchant.name}`;
-				
 				});
 
     });

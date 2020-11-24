@@ -45,17 +45,16 @@ if (window.location.pathname === '/') {
 			doubleClickZoom: true,
 			pitch: 30,
 			});
+			let userMarker = new mapboxgl.Marker({
+				scale: 1,
+				draggable: true,
+				color: "blue",
+				rotation: 10
+			})
+			userMarker.setLngLat([13.402,52.473])
+			userMarker.addTo(map);
 		}
   
-
-let userMarker = new mapboxgl.Marker({
-	scale: 1,
-	draggable: true,
-	color: "blue",
-	rotation: 10
-})
-userMarker.setLngLat([13.402,52.473])
-userMarker.addTo(map);
  
 // userMarker.on('dragend', onDragEnd);
 

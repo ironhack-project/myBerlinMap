@@ -1,8 +1,10 @@
-let map = null;
 var userCoordinates = document.getElementById('userCoordinates');
 const popup = new mapboxgl.Popup({ closeButton: true });
 
-mapboxgl.accessToken = "pk.eyJ1IjoianVsaWFuYS1jYXJ1c28iLCJhIjoiY2tocWJvaGc0MHMwbDJ0cDU2cWJtd2NyNyJ9.IOr-Kg5Er1_7jZeLEIK0-A";
+let map = null;
+
+mapboxgl.accessToken =
+"pk.eyJ1IjoianVsaWFuYS1jYXJ1c28iLCJhIjoiY2tocWJvaGc0MHMwbDJ0cDU2cWJtd2NyNyJ9.IOr-Kg5Er1_7jZeLEIK0-A";
 
 
 if (window.location.pathname === '/') {
@@ -81,3 +83,4 @@ userMarker.on("dragend", (data) => {
 		});
 	});
 });
+

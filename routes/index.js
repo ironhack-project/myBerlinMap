@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const axios = require('axios');
 let coordinates
+let restaurantNames
 // let restaurantList
 
 /* GET home page */
@@ -17,11 +18,13 @@ router.get('/', (req, res, next) => {
         ]
       });        
 
-      // restaurantNames = response.data.merchants.map((merchant) => {
-      //   return [
-      //     merchant.name
-      //   ]
-      // }); 
+      restaurantNames = response.data.merchants.map((merchant) => {
+        return [
+          merchant.name,
+          merchant.location.coordinates.longitude,
+          merchant.location.coordinates.latitude
+        ]
+      }); 
 
       const restaurantList = response.data.merchants;
       // console.log(restaurantList)
@@ -36,10 +39,10 @@ router.get('/rawdataCoordinates', (req,res,next) => {
 });
 
 
-// router.get('/rawdatarestaurantNames', (req,res,next) => {
-//   console.log(restaurantNames);
-//   return res.json (restaurantNames)
-// });
+router.get('/rawdatarestaurantNames', (req,res,next) => {
+  // console.log(restaurantNames);
+  return res.json (restaurantNames)
+});
 
 router.get('/search', (req,res,next) => {
   res.render ('search')

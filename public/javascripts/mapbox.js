@@ -46,6 +46,11 @@ if (window.location.pathname === '/') {
 		});
 				
 } else if (window.location.pathname === '/search') {
+	axios.get('/rawdatarestaurantNames')
+		.then(response => {
+			let restaurantNames = response.data
+			console.log(restaurantNames)
+		});
 	map = new mapboxgl.Map({
 		container: "map",
 		style: 'mapbox://styles/mapbox/streets-v11',
@@ -105,9 +110,10 @@ function zoomAndDisplayName (marker) {
 			});
 		});
 
-		buildLocationList(restaurantList)
+		// buildLocationList(restaurantList) //correct file needs to be added
 	});
 }
+
 // .features.forEach(function(restaurant, i){
 	// 	restaurant.id = i;
 	// });
@@ -142,18 +148,18 @@ function zoomAndDisplayName (marker) {
 //   });
 
 function buildLocationList(data) {
-	data.features.forEach(function(store, i){
+	data.features.forEach( (store, i) => {
 		/**
 		 * Create a shortcut for `store.properties`,
 		 * which will be used several times below.
 		 **/
-		var prop = store.properties;
+		var prop = store.properties; // use our DB strucutre 
 
 		/* Add a new listing section to the sidebar. */
 		var listings = document.getElementById('listings');
 		var listing = listings.appendChild(document.createElement('div'));
 		/* Assign a unique `id` to the listing. */
-		listing.id = "listing-" + prop.id;
+		listing.id = "listing-" + prop.id;	
 		/* Assign the `item` class to each listing for styling. */
 		listing.className = 'item';
 

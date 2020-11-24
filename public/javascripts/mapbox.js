@@ -25,7 +25,7 @@ if (window.location.pathname === '/') {
 	var nav = new mapboxgl.NavigationControl();
 	map.addControl(nav, 'top-left');
 
-	axios.get('/rawdata')
+	axios.get('/rawdataCoordinates')
 		.then(response => {
 			let coordinates = response.data
 
@@ -68,25 +68,27 @@ if (window.location.pathname === '/') {
 	userMarker.setLngLat(berlinCenter)
 	userMarker.addTo(map);
 
-	nameGame(userMarker)
+	zoomAndDisplayName(userMarker)
 } //end else statement 
 
-function nameGame (marker) {
+function zoomAndDisplayName (marker) {
 	marker.on("dragend", (data) => {
-		console.log("hello? Is it data?", data.target.getLngLat());
-		// popup.addTo(map);
-		// popup.setLngLat(data.target.getLngLat());
-		// popup.setMaxWidth("40px");
-		// popup.setHTML(
-		// 	`<h2>What a location</h2> <h3>location: ${data.target.getLngLat()} </h3>`)
+		console.log(`"hello? Is it data?", ${data.target}`);
+		popup.addTo(map);
+		popup.setLngLat(data.target.getLngLat());
+		popup.setMaxWidth("40px");
+		// if (data.target.getLngLat() === 
+		popup.setHTML(
+			`<h3>location: ${data.target.getLngLat()} </h3>`)
 		
 		map.jumpTo({
 			center: data.target.getLngLat(),
-			zoom: 13
+			zoom: 15
 		})
 		
-		axios.get('/rawdata')
+		axios.get('/rawdataCoordinates')
 			.then(response => {
+				// console.log(restaurantList.name)
 				let coordinates = response.data
 				coordinates.forEach((location) => {
 			// console.log(location);

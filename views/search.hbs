@@ -1,6 +1,13 @@
 <h1>
     Search Page <button><a href="/">Go Back</a></button>
 </h1>
-<div id="map" style="width: 90%; height: 80vh"></div>
+
+<div style="width: 50%; heigth: 100vh; float: left">
+  {{#each restaurantList}}
+    <p>{{name}}</p>
+  {{/each}}
+</div>
+
+<div id="map" style="width: 50%; height: 100vh"></div>
 
 <p><button><a href="/">Go Back</a></button></p>

@@ -177,5 +177,7 @@ function buildLocationList(data) {
 		// details.innerHTML += ' · ' + prop.phoneFormatted;
 		// }
 	});
-}
-  
+
+};
+
+

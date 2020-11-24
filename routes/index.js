@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
   // here we want to call the api
   axios.get('https://api.quandoo.com/v1/merchants?place=Berlin&radius=10&capacity=2&offset=0&limit=10000')
     .then(response => {
-      // console.log(response.data.merchants.merchants);
+      // console.log(response.data.merchants);
       coordinates = response.data.merchants.map((merchant) => {
         return [
           merchant.location.coordinates.longitude,

@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const axios = require('axios');
 let coordinates
-// let restaurantNames
+// let restaurantList
 
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -24,6 +24,7 @@ router.get('/', (req, res, next) => {
       // }); 
 
       const restaurantList = response.data.merchants;
+      // console.log(restaurantList)
       res.render('index', { restaurantList })
     })
 });
@@ -41,7 +42,7 @@ router.get('/rawdataCoordinates', (req,res,next) => {
 // });
 
 router.get('/search', (req,res,next) => {
-  // res.render ('search')
+  res.render ('search')
   axios.get('https://api.quandoo.com/v1/merchants?place=Berlin&radius=10&capacity=2&offset=0&limit=10000')
     .then(response => {
       const restaurantList = response.data.merchants;

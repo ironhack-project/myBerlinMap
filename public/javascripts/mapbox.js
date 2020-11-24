@@ -90,6 +90,7 @@ function zoomAndDisplayName (marker) {
 			.then(response => {
 				// console.log(restaurantList.name)
 				let coordinates = response.data
+				
 				coordinates.forEach((location) => {
 			// console.log(location);
 			// https://docs.mapbox.com/mapbox-gl-js/api/markers/
@@ -103,5 +104,72 @@ function zoomAndDisplayName (marker) {
 				newMarker.addTo(map);
 			});
 		});
+
+		buildLocationList(restaurantList)
 	});
 }
+// .features.forEach(function(restaurant, i){
+	// 	restaurant.id = i;
+	// });
+// function compareCoordinates (markerLocation, restaurantLocation) {
+// 	let restaurantLocationX =
+// 	let restaurantLocationY =
+// 	if (restaurantLocation.x > 10 && restaurantLocation.x < 20 && y > 10 && y < 20 ) {
+// 		return true
+// 	}
+// }
+
+
+// restaurantList.features.forEach(function(restaurant, i){
+// 	restaurant.id = i;
+// });
+
+// map.on('load', function (e) {
+// 	/* Add the data to your map as a layer */
+// 	map.addLayer({
+// 	  "id": "locations",
+// 	  "type": "symbol",
+// 	  /* Add a GeoJSON source containing place coordinates and information. */
+// 	  "source": {
+// 		"type": "geojson",
+// 		"data": restaurantList
+// 	  },
+// 	  "layout": {
+// 		"icon-image": "restaurant-15",
+// 		"icon-allow-overlap": true,
+// 	  }
+// 	});
+//   });
+
+function buildLocationList(data) {
+	data.features.forEach(function(store, i){
+		/**
+		 * Create a shortcut for `store.properties`,
+		 * which will be used several times below.
+		 **/
+		var prop = store.properties;
+
+		/* Add a new listing section to the sidebar. */
+		var listings = document.getElementById('listings');
+		var listing = listings.appendChild(document.createElement('div'));
+		/* Assign a unique `id` to the listing. */
+		listing.id = "listing-" + prop.id;
+		/* Assign the `item` class to each listing for styling. */
+		listing.className = 'item';
+
+		/* Add the link to the individual listing created above. */
+		var link = listing.appendChild(document.createElement('a'));
+		link.href = '#';
+		link.className = 'title';
+		link.id = "link-" + prop.id;
+		link.innerHTML = prop.address;
+
+		// /* Add details to the individual listing. */
+		// var details = listing.appendChild(document.createElement('div'));
+		// details.innerHTML = prop.city;
+		// if (prop.phone) {
+		// details.innerHTML += ' · ' + prop.phoneFormatted;
+		// }
+	});
+}
+  

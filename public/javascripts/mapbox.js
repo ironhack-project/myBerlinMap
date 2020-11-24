@@ -2,20 +2,27 @@ var userCoordinates = document.getElementById('userCoordinates');
 const popup = new mapboxgl.Popup({ closeButton: true });
 
 let map = null;
-
+let berlinCenter = [13.4050, 52.5200]
 mapboxgl.accessToken =
 "pk.eyJ1IjoianVsaWFuYS1jYXJ1c28iLCJhIjoiY2tocWJvaGc0MHMwbDJ0cDU2cWJtd2NyNyJ9.IOr-Kg5Er1_7jZeLEIK0-A";
 
+let bounds = [
+	[13.067,52.383], // Southwest coordinates //52.38343092503339, 13.067302315850695 original: 13.263522,52.416737]
+
+	[13.736,52.633] // Northeast coordinates original 13.492763,52.649208 = 52.633348, 13.736823
+	];
 
 if (window.location.pathname === '/') {
 	map = new mapboxgl.Map({
-	  container: "map",
-	  style: 'mapbox://styles/mapbox/streets-v11',
-	  center: [13.4050, 52.5200],
-	  zoom: 9,
-	  doubleClickZoom: true,
-	  pitch: 30,
+		container: "map",
+		style: 'mapbox://styles/mapbox/streets-v11',
+		center: berlinCenter,
+		zoom: 9,
+		doubleClickZoom: true,
+		pitch: 30,
+		maxBounds: bounds
 	});
+
 	axios.get('/rawdata')
 		.then(response => {
 			let coordinates = response.data
@@ -37,21 +44,23 @@ if (window.location.pathname === '/') {
 		});
 				
 		} else if (window.location.pathname === '/search') {
-			map = new mapboxgl.Map({
-			container: "map",
-			style: 'mapbox://styles/mapbox/streets-v11',
-			center: [13.4050, 52.5200],
-			zoom: 9,
-			doubleClickZoom: true,
-			pitch: 30,
+				map = new mapboxgl.Map({
+				container: "map",
+				style: 'mapbox://styles/mapbox/streets-v11',
+				center: berlinCenter,
+				zoom: 9,
+				doubleClickZoom: true,
+				pitch: 30,
+				maxBounds: bounds
 			});
+
 			let userMarker = new mapboxgl.Marker({
 				scale: 1,
 				draggable: true,
 				color: "blue",
 				rotation: 10
 			})
-			userMarker.setLngLat([13.402,52.473])
+			userMarker.setLngLat(berlinCenter)
 			userMarker.addTo(map);
 		}
   

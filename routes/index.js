@@ -5,19 +5,12 @@ let coordinates
 
 /* GET home page */
 router.get('/', (req, res, next) => {
-  // here we want to call the api
-  axios.get('https://api.quandoo.com/v1/merchants?place=Berlin&radius=10&capacity=2&offset=0&limit=10000')
-    .then(response => {
-      // console.log(response.data.merchants);
-      coordinates = response.data.merchants.map((merchant) => {
-        return [
-        merchant.location.coordinates.longitude,
-        merchant.location.coordinates.latitude
-        ]
-        });        
-      const restaurantList = response.data.merchants;
-      res.render('index', { restaurantList })
-    })
+  restaurants.find().then(restaurants => {
+    res.render('index', { restaurants });
+})
+    .catch(err => {
+        next(err);
+    });
 });
 
 
@@ -26,21 +19,25 @@ router.get('/rawdata', (req,res,next) => {
   return res.json (coordinates)
 });
 
-
-
 router.get('/search', (req,res,next) => {
   res.render ('search')
 });
 
-// router.get('/search', (req, res, next) => {
+
+module.exports = router;
+
+// router.get('/', (req, res, next) => {
 //   // here we want to call the api
 //   axios.get('https://api.quandoo.com/v1/merchants?place=Berlin&radius=10&capacity=2&offset=0&limit=10000')
 //     .then(response => {
 //       // console.log(response.data.merchants);
+//       coordinates = response.data.merchants.map((merchant) => {
+//         return [
+//         merchant.location.coordinates.longitude,
+//         merchant.location.coordinates.latitude
+//         ]
+//         });        
 //       const restaurantList = response.data.merchants;
-//       res.render('search', { restaurantList })
+//       res.render('index', { restaurantList })
 //     })
 // });
-
-
-module.exports = router;

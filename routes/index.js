@@ -27,6 +27,7 @@ router.get('/rawdata', (req,res,next) => {
 });
 
 
+
 router.get('/search', (req,res,next) => {
   res.render ('search')
 });
@@ -40,5 +41,6 @@ router.get('/search', (req,res,next) => {
 //       res.render('search', { restaurantList })
 //     })
 // });
+
 
 module.exports = router;

@@ -1,3 +1,4 @@
+
 var userCoordinates = document.getElementById('userCoordinates');
 const popup = new mapboxgl.Popup({ closeButton: true });
 
@@ -90,5 +91,7 @@ userMarker.on("dragend", (data) => {
 			newMarker.addTo(map);
 		});
 	});
+
 });
+
 

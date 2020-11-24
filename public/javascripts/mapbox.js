@@ -1,5 +1,3 @@
-
-  
 var userCoordinates = document.getElementById('userCoordinates');
 const popup = new mapboxgl.Popup({ closeButton: true });
 
@@ -180,4 +178,4 @@ function buildLocationList(data) {
 		// }
 	});
 }
-
+  

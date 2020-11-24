@@ -52,6 +52,7 @@ if (window.location.pathname === '/') {
     doubleClickZoom: true,
     pitch: 30,
   });
+
 }
 
 

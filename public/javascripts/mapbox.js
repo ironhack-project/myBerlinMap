@@ -74,13 +74,14 @@ if (window.location.pathname === '/') {
 
 function zoomAndDisplayName (marker) {
 	marker.on("dragend", (data) => {
-		console.log(`"hello? Is it data?", ${data.target}`);
+		// console.log(`"hello? Is it data?", ${data.target}`);
 		popup.addTo(map);
 		popup.setLngLat(data.target.getLngLat());
 		popup.setMaxWidth("40px");
 		// if (data.target.getLngLat() === 
-		popup.setHTML(
-			`<h3>location: ${data.target.getLngLat()} </h3>`)
+		// popup.setHTML(`hii`
+			// `<h3>location: ${data.target.getLngLat()} </h3>`
+			// )
 		
 		map.jumpTo({
 			center: data.target.getLngLat(),
@@ -108,7 +109,7 @@ function zoomAndDisplayName (marker) {
 		axios.get('/rawdatarestaurantNames')
 		.then(response => {
 			let restaurantNames = response.data
-			console.log(restaurantNames)
+			// console.log(restaurantNames[0][0])
 			buildLocationList(restaurantNames) //correct file needs to be added
 		}); 
 	});
@@ -149,7 +150,7 @@ function zoomAndDisplayName (marker) {
 
 function buildLocationList(data) {
 
-	data.features.forEach( (store, i) => {
+	data.forEach( (store, i) => {
 		/**
 		 * Create a shortcut for `store.properties`,
 		 * which will be used several times below.
@@ -161,23 +162,21 @@ function buildLocationList(data) {
 		var listings = document.getElementById('listings');
 		var listing = listings.appendChild(document.createElement('div'));
 		/* Assign a unique `id` to the listing. */
-		listing.id = "listing-" + restaurant.id;	
+		listing.id = "listing-" + restaurant[0][1];	
 		/* Assign the `item` class to each listing for styling. */
 		listing.className = 'item';
 
-		/* Add the link to the individual listing created above. */
-		var link = listing.appendChild(document.createElement('a'));
-		link.href = '#';
-		link.className = 'title';
-		link.id = "link-" + prop.id;
-		link.innerHTML = prop.address;
+		// /* Add the link to the individual listing created above. */
+		// var link = listing.appendChild(document.createElement('a'));
+		// link.href = '#';
+		// link.className = 'title';
+		// link.id = "link-" + prop.id;
+		// link.innerHTML = prop.address;
 
-		// /* Add details to the individual listing. */
-		// var details = listing.appendChild(document.createElement('div'));
-		// details.innerHTML = prop.city;
-		// if (prop.phone) {
-		// details.innerHTML += ' · ' + prop.phoneFormatted;
-		// }
-	});
+		/* Add details to the individual listing. */
+		var details = listing.appendChild(document.createElement('div'));
+		details.innerHTML =  'Name ' + restaurant[0];
+		// details.innerHTML += '';
+		});
 }
   

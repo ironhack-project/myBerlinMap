@@ -1,0 +1,24 @@
+<form action="/login" method="POST">
+<p>
+    <label for="username">Username</label>
+    <input type="text" name="username">
+</p>
+<p>
+    <label for="password">Password></label>
+    <input type="password" name="password">
+    
+</p>
+<p>
+    <button type="submit">Log in</button>
+</p>
+</form>
+
+{{#if message}}
+<p style="color: red;">{{message}}</p>
+{{/if}}
+
+<br>
+
+<button><P><a href="/">Back to main page</a></button>
+
+

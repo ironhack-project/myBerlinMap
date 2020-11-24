@@ -1,12 +1,19 @@
 {{!-- <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p> --}}
 
+<div>
+    <p><button class="button"><a class="bla" href="/login">Log in </a></button></p>
+    <p><button class="button"><a class="bla" href="/signup">Sign up </a></button></p>
+</div>
+
 <div style="width: 50%; heigth: 100vh; float: left">
   {{#each restaurantList}}
-    <p>{{name}}</p>
-  {{/each}}
+    <p>Welcome {{name}} </p>
+  {{/each}}   
 </div>
 <h1>
     MAP <button><a href="/search">search for things!</a></button>
 </h1>
 <div id="map" style="width: 50%; height: 100vh"></div>
+
+ 

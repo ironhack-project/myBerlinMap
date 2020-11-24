@@ -21,6 +21,9 @@ if (window.location.pathname === '/') {
 		pitch: 30,
 		maxBounds: bounds
 	});
+	
+	var nav = new mapboxgl.NavigationControl();
+	map.addControl(nav, 'top-left');
 
 	axios.get('/rawdata')
 		.then(response => {
@@ -44,15 +47,18 @@ if (window.location.pathname === '/') {
 				
 } else if (window.location.pathname === '/search') {
 	map = new mapboxgl.Map({
-	container: "map",
-	style: 'mapbox://styles/mapbox/streets-v11',
-	center: berlinCenter,
-	zoom: 9,
-	doubleClickZoom: true,
-	pitch: 30,
-	maxBounds: bounds
+		container: "map",
+		style: 'mapbox://styles/mapbox/streets-v11',
+		center: berlinCenter,
+		zoom: 9,
+		doubleClickZoom: true,
+		pitch: 30,
+		maxBounds: bounds
 	});
-
+	
+	var nav = new mapboxgl.NavigationControl();
+	map.addControl(nav, 'top-left');
+	
 	let userMarker = new mapboxgl.Marker({
 		scale: 1,
 		draggable: true,
@@ -68,11 +74,17 @@ if (window.location.pathname === '/') {
 function nameGame (marker) {
 	marker.on("dragend", (data) => {
 		console.log("hello? Is it data?", data.target.getLngLat());
-		popup.addTo(map);
-		popup.setLngLat(data.target.getLngLat());
-		popup.setMaxWidth("400px");
-		popup.setHTML(
-			`<h2>What a location</h2> <h3>location: ${data.target.getLngLat()} </h3>`)
+		// popup.addTo(map);
+		// popup.setLngLat(data.target.getLngLat());
+		// popup.setMaxWidth("40px");
+		// popup.setHTML(
+		// 	`<h2>What a location</h2> <h3>location: ${data.target.getLngLat()} </h3>`)
+		
+		map.jumpTo({
+			center: data.target.getLngLat(),
+			zoom: 13
+		})
+		
 		axios.get('/rawdata')
 			.then(response => {
 				let coordinates = response.data

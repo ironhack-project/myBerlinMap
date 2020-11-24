@@ -91,9 +91,10 @@ function zoomAndDisplayName (marker) {
 		// if (data.target.getLngLat() === 
 		//popup.setHTML(`<h3>location: ${data.target.getLngLat()} </h3>`);
 
-markers.forEach(marker => {
-	marker.remove();
-});
+		// clear the pins when the user drop it to another location
+		markers.forEach(marker => {
+			marker.remove();
+		});
 		// gettinf=g coordinates of dropped pin for api call
 		const droppedPin = data.target.getLngLat();
 		
@@ -101,7 +102,7 @@ markers.forEach(marker => {
 		const listingsDiv = document.getElementById('listings');
 
 		// new api call getting the restaurants according to droppedPin range
-		axios.get(`https://api.quandoo.com/v1/merchants?centerPoint=${droppedPin.lat}%2C%20${droppedPin.lng}&radius=1&capacity=2&offset=0&limit=10`)
+		axios.get(`https://api.quandoo.com/v1/merchants?centerPoint=${droppedPin.lat}%2C%20${droppedPin.lng}&radius=1&capacity=2&offset=0&limit=20`)
     .then(response => {
 
 			response.data.merchants.forEach((merchant) => {
@@ -114,7 +115,6 @@ markers.forEach(marker => {
 					newMarker.setLngLat([merchant.location.coordinates.longitude, merchant.location.coordinates.latitude]);
 					newMarker.addTo(map);
 
-					// clear the pins when the user drop it to another location
 					markers.push(newMarker);
 
 					// adding text to our Div

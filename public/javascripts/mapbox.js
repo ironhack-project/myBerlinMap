@@ -27,8 +27,8 @@ if (window.location.pathname === '/') {
 		maxBounds: bounds
 	});
 	
-	var nav = new mapboxgl.NavigationControl(); // is this being used?
-	map.addControl(nav, 'top-left'); // is this being used?
+	var nav = new mapboxgl.NavigationControl();
+	map.addControl(nav, 'top-left');
 
 	axios.get('/rawdataCoordinates')
 		.then(response => {
@@ -65,6 +65,7 @@ if (window.location.pathname === '/') {
 		doubleClickZoom: true,
 		pitch: 30,
 		maxBounds: bounds
+
 	});
 	
 	var nav = new mapboxgl.NavigationControl(); // is this being used?

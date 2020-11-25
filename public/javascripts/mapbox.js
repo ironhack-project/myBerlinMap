@@ -117,17 +117,20 @@ function zoomAndDisplayName (marker) {
 					markers.push(newMarker);
 
 					// adding text to our Div
-					listingsDiv.innerHTML += `<h4>${merchant.name}</h4>`;
+					listingsDiv.innerHTML += `<a class="search-result-title" href="/restaurantDetails/${merchant.id}">${merchant.name}</a>`;
+					listingsDiv.innerHTML += `<p>Restaurant score: ${merchant.reviewScore} / 6</p>`;
 
 					const cuisines = merchant.tagGroups.find(tg => tg.type === 'CUISINE').tags.map((tag) => {
 						return tag.name;
 					});
 					
-					listingsDiv.innerHTML += '<p>Cuisine: </p>'
+					listingsDiv.innerHTML += "<p>";
+					listingsDiv.innerHTML += '<span><strong>Cuisine:</strong> '
 					cuisines.forEach((cuisine) => {
-						listingsDiv.innerHTML += `&nbsp;&nbsp;&nbsp;${cuisine}<br/>`;
+						listingsDiv.innerHTML += `<span>- ${cuisine} </span>`;
 					});
-				  
+					listingsDiv.innerHTML += '</span>';
+				  listingsDiv.innerHTML += "</p>"
 				});
 
     });

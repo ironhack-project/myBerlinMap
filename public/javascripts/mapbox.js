@@ -153,12 +153,12 @@ function zoomAndDisplayName (marker) {
 				newMarker.addTo(map);
 			});
 		});
-// 		axios.get('/rawdatarestaurantNames')
-// 		.then(response => {
-// 			let restaurantNames = response.data
-// 			// console.log(restaurantNames[0][0])
-// 			buildLocationList(restaurantNames) //correct file needs to be added
-// 		}); 
+		axios.get('/rawdatarestaurantNames')
+		.then(response => {
+			let restaurantNames = response.data
+			// console.log(restaurantNames[0][0])
+			buildLocationList(restaurantNames) //correct file needs to be added
+		}); 
 
 	});
 }

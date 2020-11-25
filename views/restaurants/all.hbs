@@ -1,8 +1,27 @@
-Below is our specially curated list of restaurants
+Below you'll find our specially curated list of restaurants.
+
+<p>Find one that looks good? Click on the picture to find out more</p>
   
   {{#each restaurantList}}
     <p><b>{{ name }}</b> {{ reviewScore }} stars out of 5.5 <p>
+
+    <p>
+       {{#each tagGroups }}
+        {{this.tags.[0].name}}
+       {{/each}}
+    </p>
+    
+    <p>
+      <a href="{{name}}">
+        <img src="{{images.[0].url}}" alt=" Selected photo for {{name}}" style="width: 50%; height: 10%">
+      </a>
+      
+    </p>
   {{/each}}   
+
+
+
+
 
 {{!-- 
   <p>

@@ -85,12 +85,14 @@ if (window.location.pathname === '/') {
 
 function zoomAndDisplayName (marker) {
 	marker.on("dragend", (data) => {
-		//console.log(`"hello? Is it data?", ${data.target.getLngLat()}`);
+		//console.log(`"hello? Is it data?", ${data.target}`);
 		popup.addTo(map);
 		popup.setLngLat(data.target.getLngLat());
 		popup.setMaxWidth("40px");
 		// if (data.target.getLngLat() === 
-		//popup.setHTML(`<h3>location: ${data.target.getLngLat()} </h3>`);
+    // popup.setHTML(`hii`
+    // `<h3>location: ${data.target.getLngLat()} </h3>`
+    // )
 
 		// clear the pins when the user drop it to another location
 		markers.forEach(marker => {
@@ -98,6 +100,8 @@ function zoomAndDisplayName (marker) {
 		});
 		// gettinf=g coordinates of dropped pin for api call
 		const droppedPin = data.target.getLngLat();
+
+		
 		
 		// adding text to our Div
 		const listingsDiv = document.getElementById('listings');
@@ -130,23 +134,72 @@ function zoomAndDisplayName (marker) {
 			zoom: 15
 		})
 
+		
+		axios.get('/rawdataCoordinates')
+			.then(response => {
+				// console.log(restaurantList.name)
+				let coordinates = response.data
+				
+				coordinates.forEach((location) => {
+			// console.log(location);
+			// https://docs.mapbox.com/mapbox-gl-js/api/markers/
+				let newMarker = new mapboxgl.Marker({
+					scale: 1,
+					draggable: false,
+					color: "purple",
+					rotation: 10,
+				});
+				newMarker.setLngLat(location);
+				newMarker.addTo(map);
+			});
+		});
+// 		axios.get('/rawdatarestaurantNames')
+// 		.then(response => {
+// 			let restaurantNames = response.data
+// 			// console.log(restaurantNames[0][0])
+// 			buildLocationList(restaurantNames) //correct file needs to be added
+// 		}); 
+
 	});
 }
 
 
+// restaurantList.features.forEach(function(restaurant, i){
+// 	restaurant.id = i;
+// });
+
+// map.on('load', function (e) {
+// 	/* Add the data to your map as a layer */
+// 	map.addLayer({
+// 	  "id": "locations",
+// 	  "type": "symbol",
+// 	  /* Add a GeoJSON source containing place coordinates and information. */
+// 	  "source": {
+// 		"type": "geojson",
+// 		"data": restaurantList
+// 	  },
+// 	  "layout": {
+// 		"icon-image": "restaurant-15",
+// 		"icon-allow-overlap": true,
+// 	  }
+// 	});
+//   });
+
 function buildLocationList(data) {
-	data.features.forEach( (store, i) => {
+
+	data.forEach( (store, i) => {
 		/**
 		 * Create a shortcut for `store.properties`,
 		 * which will be used several times below.
 		 **/
-		var prop = store.properties; // use our DB strucutre 
+		// var prop = store.properties; // use our DB strucutre 
+		let restaurant = store
 
 		/* Add a new listing section to the sidebar. */
 		var listings = document.getElementById('listings');
 		var listing = listings.appendChild(document.createElement('div'));
 		/* Assign a unique `id` to the listing. */
-		listing.id = "listing-" + prop.id;	
+		listing.id = "listing-" + restaurant[0][1];	
 		/* Assign the `item` class to each listing for styling. */
 		listing.className = 'item';
 
@@ -164,5 +217,18 @@ function buildLocationList(data) {
 		// details.innerHTML += ' · ' + prop.phoneFormatted;
 		// }
 	});
+    //for buildLocationList inserts, probably to be removed in favor of juliana's stuff above 
+		// /* Add the link to the individual listing created above. */
+		// var link = listing.appendChild(document.createElement('a'));
+		// link.href = '#';
+		// link.className = 'title';
+		// link.id = "link-" + prop.id;
+		// link.innerHTML = prop.address;
+
+		/* Add details to the individual listing. */
+// 		var details = listing.appendChild(document.createElement('div'));
+// 		details.innerHTML =  'Name ' + restaurant[0];
+// 		// details.innerHTML += '';
+// 		});
 }
   

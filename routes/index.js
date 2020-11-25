@@ -18,12 +18,18 @@ router.get('/', (req, res, next) => {
         ]
       });        
 
-      restaurantNames = response.data.merchants.map((merchant) => {
-        return [
+      restaurantNames = response.data.merchants.map((merchant) => {  
+        // let newObject = {name, id, long,lat}
+        let newObject = {}
+        Object.assign( newObject ,[
           merchant.name,
+          merchant.id,
           merchant.location.coordinates.longitude,
           merchant.location.coordinates.latitude
-        ]
+        ])
+        // console.log(newObject);
+        return newObject
+
       }); 
 
       const restaurantList = response.data.merchants;

@@ -1,0 +1,17 @@
+Below is our specially curated list of restaurants
+  
+  {{#each restaurantList}}
+    <p><b>{{ name }}</b> {{ reviewScore }} stars out of 5.5 <p>
+  {{/each}}   
+
+{{!-- 
+  <p>
+      {{#each tagGroups }}
+        {{#with this.type}}
+            {{!-- {{#with this.tags}} --}}
+              {{!-- <p> {{ this.tag.[0] }} </p> --}}
+            {{!-- {{/with}} --}}
+          {{!-- {{/with}} --}}
+      {{!-- {{/each}} --}}
+    {{!-- </p>  --}}
+    

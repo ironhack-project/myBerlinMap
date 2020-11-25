@@ -9,7 +9,7 @@
 
 <div style="width: 50%; heigth: 100vh; float: left">
   {{#each restaurantList}}
-    <p>Welcome {{name}} </p>
+    <p>Welcome <a href="restaurantDetails/{{id}}">{{name}}</a> </p>
   {{/each}}   
 </div>
 <h1>
@@ -17,7 +17,9 @@
 </h1>
 <div id="map" style="width: 50%; height: 100vh"></div>
 <p> 
-<button><a href="/private">Private Page</a></button>>
+<a href="/private">Private Page</a>
+<a href="/logout">Logout</a>
 </p>
+
 
  

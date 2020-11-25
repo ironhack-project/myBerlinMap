@@ -11,6 +11,7 @@ router.get('/', (req, res, next) => {
   axios.get('https://api.quandoo.com/v1/merchants?place=Berlin&radius=10&capacity=2&offset=0&limit=10000')
     .then(response => {
       // console.log(response.data.merchants.merchants);
+      //console.log(response.data.merchants);
       coordinates = response.data.merchants.map((merchant) => {
         return [
           merchant.location.coordinates.longitude,
@@ -73,28 +74,37 @@ router.get('/private', loginCheck(), (req, res, next) => {
   res.render('private');
 });
 
-router.get('/search', (req,res, next) => {
-  res.render ('search')
-  axios.get('https://api.quandoo.com/v1/merchants?place=Berlin&radius=10&capacity=2&offset=0&limit=10000')
-    .then(response => {
-      coordinates = response.data.merchants.map((merchant) => {
-        return [
-          merchant.location.coordinates.longitude,
-          merchant.location.coordinates.latitude
-        ]
-      });
+router.get('/restaurantDetails/:id',(req,res,next) => {
+  const restaurantId = req.params.id;
+  axios.get(`https://api.quandoo.com/v1/merchants/${restaurantId}`)
+  .then(response => {
+    //console.log(response.data.name);
+    const restaurantDetails = response.data
+    console.log(restaurantDetails);
+    res.render('restaurantDetails' , {restaurantDetails});
+   })
+})
 
-      restaurantNames = response.data.merchants.map((merchant) => {
-        return [
-          merchant.name,
-          merchant.location.coordinates.longitude,
-          merchant.location.coordinates.latitude
-        ]
-      });
-
-      const restaurantList = response.data.merchants;
-      res.render('search', { restaurantList })
-    });
-});
+// router.get('/search', (req,res, next) => {
+//   res.render ('search')
+//   axios.get('https://api.quandoo.com/v1/merchants?place=Berlin&radius=10&capacity=2&offset=0&limit=10000')
+//     .then(response => {
+//       coordinates = response.data.merchants.map((merchant) => {
+//         return [
+//           merchant.location.coordinates.longitude,
+//           merchant.location.coordinates.latitude
+//         ]
+//       });
+//  restaurantNames = response.data.merchants.map((merchant) => {
+//     return [
+//       merchant.name,
+//       merchant.location.coordinates.longitude,
+//       merchant.location.coordinates.latitude
+//     ]
+//     });
+//     const restaurantList = response.data.merchants;
+//     res.render('search', { restaurantList })
+//   });
+// });
 
 module.exports = router;

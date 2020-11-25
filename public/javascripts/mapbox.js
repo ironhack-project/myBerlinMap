@@ -78,11 +78,15 @@ if (window.location.pathname === '/') {
 
 function zoomAndDisplayName (marker) {
 	marker.on("dragend", (data) => {
+		// console.log(`"hello? Is it data?", ${data.target}`);
 		console.log(`"hello? Is it data?", ${data.target}`);
 		popup.addTo(map);
 		popup.setLngLat(data.target.getLngLat());
 		popup.setMaxWidth("40px");
 		// if (data.target.getLngLat() === 
+		// popup.setHTML(`hii`
+			// `<h3>location: ${data.target.getLngLat()} </h3>`
+			// )
 		popup.setHTML(
 			`<h3>location: ${data.target.getLngLat()} </h3>`)
 		
@@ -109,6 +113,12 @@ function zoomAndDisplayName (marker) {
 				newMarker.addTo(map);
 			});
 		});
+// 		axios.get('/rawdatarestaurantNames')
+// 		.then(response => {
+// 			let restaurantNames = response.data
+// 			// console.log(restaurantNames[0][0])
+// 			buildLocationList(restaurantNames) //correct file needs to be added
+// 		}); 
 
 		// buildLocationList(restaurantList) //correct file needs to be added
 	});
@@ -147,37 +157,56 @@ function zoomAndDisplayName (marker) {
 // 	});
 //   });
 
+// restaurantList.features.forEach(function(restaurant, i){
+// 	restaurant.id = i;
+// });
+
+// map.on('load', function (e) {
+// 	/* Add the data to your map as a layer */
+// 	map.addLayer({
+// 	  "id": "locations",
+// 	  "type": "symbol",
+// 	  /* Add a GeoJSON source containing place coordinates and information. */
+// 	  "source": {
+// 		"type": "geojson",
+// 		"data": restaurantList
+// 	  },
+// 	  "layout": {
+// 		"icon-image": "restaurant-15",
+// 		"icon-allow-overlap": true,
+// 	  }
+// 	});
+//   });
+
 function buildLocationList(data) {
-	data.features.forEach( (store, i) => {
+
+	data.forEach( (store, i) => {
 		/**
 		 * Create a shortcut for `store.properties`,
 		 * which will be used several times below.
 		 **/
-		var prop = store.properties; // use our DB strucutre 
+		// var prop = store.properties; // use our DB strucutre 
+		let restaurant = store
 
 		/* Add a new listing section to the sidebar. */
 		var listings = document.getElementById('listings');
 		var listing = listings.appendChild(document.createElement('div'));
 		/* Assign a unique `id` to the listing. */
-		listing.id = "listing-" + prop.id;	
+		listing.id = "listing-" + restaurant[0][1];	
 		/* Assign the `item` class to each listing for styling. */
 		listing.className = 'item';
 
-		/* Add the link to the individual listing created above. */
-		var link = listing.appendChild(document.createElement('a'));
-		link.href = '#';
-		link.className = 'title';
-		link.id = "link-" + prop.id;
-		link.innerHTML = prop.address;
+		// /* Add the link to the individual listing created above. */
+		// var link = listing.appendChild(document.createElement('a'));
+		// link.href = '#';
+		// link.className = 'title';
+		// link.id = "link-" + prop.id;
+		// link.innerHTML = prop.address;
 
-		// /* Add details to the individual listing. */
-		// var details = listing.appendChild(document.createElement('div'));
-		// details.innerHTML = prop.city;
-		// if (prop.phone) {
-		// details.innerHTML += ' · ' + prop.phoneFormatted;
-		// }
-	});
-
-};
-
-
+		/* Add details to the individual listing. */
+		var details = listing.appendChild(document.createElement('div'));
+		details.innerHTML =  'Name ' + restaurant[0];
+		// details.innerHTML += '';
+		});
+}
+  

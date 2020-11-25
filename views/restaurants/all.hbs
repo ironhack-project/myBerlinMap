@@ -1,31 +1,18 @@
 
 Below you'll find our specially curated list of restaurants.
 
-<p>Find one that looks good? Click on the picture to find out more</p>
+<p>Find one that looks good? Click on the picture to find out more  <p><button><a href="/">Go Back</a></button></p></p>
   
 <hr>
 
 <section>
-<input type="text" id="userSearch" onkeyup="searchList()" 
-placeholder="Search for a restaurant.." title="Type in a name">
-  
-{{!-- {{#with userSearch}}
-  <ul>
-    {{#each restaurantList}}
-          <li>
-              <a href="{{id}}"><p><b>{{ name }} </b></a> 
-          </li>
-          {{/each}}
-  </ul>
-{{/with}} --}}
-
+  <input type="text" id="userSearch" onkeyup="searchList()" 
+  placeholder="Search for a restaurant.." title="Type in a name">
 </section>
   
 <hr>
 <section>  
     <ul id="restaurantList">
-        {{!-- {{#with userSearch}} --}}
-
         {{#each restaurantList}}
         <li>
             <a href="{{id}}"><b>{{ name }} </b></a> {{ reviewScore }} stars out of 5.5
@@ -46,7 +33,6 @@ placeholder="Search for a restaurant.." title="Type in a name">
             </p>
           </li> 
         {{/each}}
-        {{!-- {{/with}} --}}
 
       <li><a href="#">test</a></li>
       <li><a href="#">x</a></li>
@@ -54,21 +40,3 @@ placeholder="Search for a restaurant.." title="Type in a name">
 </section>
 
 
-{{!-- failed
- {{#each tagGroups }}
-          {{this.tags.[0].name}}
- {{/each}}
-= price average International --}}
-
-
-{{!-- 
-  <p>
-      {{#each tagGroups }}
-        {{#with this.type}}
-            {{!-- {{#with this.tags}} --}}
-              {{!-- <p> {{ this.tag.[0] }} </p> --}}
-            {{!-- {{/with}} --}}
-          {{!-- {{/with}} --}}
-      {{!-- {{/each}} --}}
-    {{!-- </p>  --}}
-    

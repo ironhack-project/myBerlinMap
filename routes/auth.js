@@ -28,7 +28,7 @@ router.post('/login', (req, res, next) => {
           // password and hash match
           // login the user
           req.session.user = found;
-          res.redirect('/');
+          res.redirect('./');
         } else {
           res.render('./auth/login', { message: 'Invalid credentials' })
         }
@@ -58,7 +58,7 @@ router.post('/login', (req, res, next) => {
             .then(dbUser => {
               // log in
               req.session.user = dbUser;
-              res.redirect('/');
+              res.redirect('./');
             })
             .catch(err => {
               // console.log(err);
@@ -73,7 +73,7 @@ router.post('/login', (req, res, next) => {
       if (err) {
         next(err);
       } else {
-        res.redirect('/')
+        res.redirect('./')
       }
     })
   });

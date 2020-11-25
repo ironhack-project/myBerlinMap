@@ -20,7 +20,7 @@ router.post('/login', (req, res, next) => {
     User.findOne({ username: username })
       .then(found => {
         if (found === null) {
-          res.render('login', { message: 'Invalid credentials' })
+          res.render('./auth/login', { message: 'Invalid credentials' })
         }
         // username exists in our database
         // check if the password matches the password for that user in the database
@@ -30,7 +30,7 @@ router.post('/login', (req, res, next) => {
           req.session.user = found;
           res.redirect('/');
         } else {
-          res.render('login', { message: 'Invalid credentials' })
+          res.render('./auth/login', { message: 'Invalid credentials' })
         }
       })
   });
@@ -39,16 +39,16 @@ router.post('/login', (req, res, next) => {
     // check if the password is long enough and username is not empty
     const { username, password } = req.body;
     if (password.length < 8) {
-      res.render('signup', { message: 'Your password must be 8 characters minimum' });
+      res.render('./auth/signup', { message: 'Your password must be 8 characters minimum' });
     }
     if (username === '') {
-      res.render('signup', { message: 'This user name has already been taken' });
+      res.render('./auth/signup', { message: 'This user name has already been taken' });
     }
     // check if the username already exists
     User.findOne({ username: username })
       .then(found => {
         if (found !== null) {
-          res.render('/signup', { message: 'This Username is already taken' })
+          res.render('./auth/signup', { message: 'This Username is already taken' })
         } else {
           // we can create a user and add the hashed password 
           const salt = bcrypt.genSaltSync();

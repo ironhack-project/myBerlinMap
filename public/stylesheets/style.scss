@@ -21,21 +21,18 @@ a {
 /* The page is split between map and sidebar - the sidebar gets 1/3, map
 gets 2/3 of the page. You can adjust this to your personal liking. */
 .sidebar {
-  width: 33.3333%;
+  outline: 1px solid red;
+  width: 32%;
+  float: left;
 }
 
 .map {
+  outline: 1px solid blue;
   border-left: 1px solid #fff;
-  position: absolute;
-  left: 33.3333%;
+  float:left;
   width: 66.6666%;
   height: 80vh;
-  top: 0;
-  bottom: 0;
-}
-
-.pad2 {
-  padding: 20px;
+  margin-left: 10px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;

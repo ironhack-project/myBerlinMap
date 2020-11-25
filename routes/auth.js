@@ -5,12 +5,12 @@ const User = require ('../models/User');
 
 
 router.get('/signup' , (req,res) => {
-    res.render('signup');
+    res.render('./auth/signup');
 });
 
 
 router.get('/login' , (req, res) => {
-    res.render ('login');
+    res.render ('./auth/login');
 });
 
 router.post('/login', (req, res, next) => {

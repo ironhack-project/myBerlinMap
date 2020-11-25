@@ -29,6 +29,7 @@ router.get('/', (req, res, next) => {
         ])
         // console.log(newObject);
         return newObject
+
       }); 
 
       const restaurantList = response.data.merchants;
@@ -49,7 +50,7 @@ router.get('/rawdatarestaurantNames', (req,res,next) => {
   return res.json (restaurantNames)
 });
 
-router.get('/search', (req,res,next) => {
+router.get('/search', (req,res, next) => {
   res.render ('search')
   axios.get('https://api.quandoo.com/v1/merchants?place=Berlin&radius=10&capacity=2&offset=0&limit=10000')
     .then(response => {
@@ -57,5 +58,38 @@ router.get('/search', (req,res,next) => {
       res.render('search', { restaurantList })
     });
 });
+
+router.get ('/' , (req,res,next) => {
+  const loggedinUser = req.session.user;
+  console.log({ loggedinUser });
+  res.render('index', { user: loggedinUser });
+});
+
+const loginCheck = () => {
+  return (req, res, next) => {
+    // if the user is logged in we proceed as intended (call next())
+    if (req.session.user) {
+      next();
+    } else {
+      // if user is not logged in we redirect to login
+      res.redirect('/login');
+    }
+  }
+}
+
+router.get('/private', loginCheck(), (req, res, next) => {
+  res.render('private');
+});
+
+
+// router.get('/search', (req, res, next) => {
+//   // here we want to call the api
+//   axios.get('https://api.quandoo.com/v1/merchants?place=Berlin&radius=10&capacity=2&offset=0&limit=10000')
+//     .then(response => {
+//       // console.log(response.data.merchants);
+//       const restaurantList = response.data.merchants;
+//       res.render('search', { restaurantList })
+//     })
+// });
 
 module.exports = router;

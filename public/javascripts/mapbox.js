@@ -45,8 +45,12 @@ if (window.location.pathname === '/') {
 			});
 		});
 				
-
 } else if (window.location.pathname === '/search') {
+	axios.get('/rawdatarestaurantNames')
+		.then(response => {
+			let restaurantNames = response.data
+			console.log(restaurantNames)
+		});
 	map = new mapboxgl.Map({
 		container: "map",
 		style: 'mapbox://styles/mapbox/streets-v11',
@@ -75,6 +79,7 @@ if (window.location.pathname === '/') {
 function zoomAndDisplayName (marker) {
 	marker.on("dragend", (data) => {
 		// console.log(`"hello? Is it data?", ${data.target}`);
+		console.log(`"hello? Is it data?", ${data.target}`);
 		popup.addTo(map);
 		popup.setLngLat(data.target.getLngLat());
 		popup.setMaxWidth("40px");
@@ -82,6 +87,8 @@ function zoomAndDisplayName (marker) {
 		// popup.setHTML(`hii`
 			// `<h3>location: ${data.target.getLngLat()} </h3>`
 			// )
+		popup.setHTML(
+			`<h3>location: ${data.target.getLngLat()} </h3>`)
 		
 		map.jumpTo({
 			center: data.target.getLngLat(),
@@ -106,12 +113,14 @@ function zoomAndDisplayName (marker) {
 				newMarker.addTo(map);
 			});
 		});
-		axios.get('/rawdatarestaurantNames')
-		.then(response => {
-			let restaurantNames = response.data
-			// console.log(restaurantNames[0][0])
-			buildLocationList(restaurantNames) //correct file needs to be added
-		}); 
+// 		axios.get('/rawdatarestaurantNames')
+// 		.then(response => {
+// 			let restaurantNames = response.data
+// 			// console.log(restaurantNames[0][0])
+// 			buildLocationList(restaurantNames) //correct file needs to be added
+// 		}); 
+
+		// buildLocationList(restaurantList) //correct file needs to be added
 	});
 }
 
@@ -126,6 +135,27 @@ function zoomAndDisplayName (marker) {
 // 	}
 // }
 
+
+// restaurantList.features.forEach(function(restaurant, i){
+// 	restaurant.id = i;
+// });
+
+// map.on('load', function (e) {
+// 	/* Add the data to your map as a layer */
+// 	map.addLayer({
+// 	  "id": "locations",
+// 	  "type": "symbol",
+// 	  /* Add a GeoJSON source containing place coordinates and information. */
+// 	  "source": {
+// 		"type": "geojson",
+// 		"data": restaurantList
+// 	  },
+// 	  "layout": {
+// 		"icon-image": "restaurant-15",
+// 		"icon-allow-overlap": true,
+// 	  }
+// 	});
+//   });
 
 // restaurantList.features.forEach(function(restaurant, i){
 // 	restaurant.id = i;

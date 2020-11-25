@@ -1,0 +1,28 @@
+<h2 style="text-align: center;"> RESTAURANT DETAILS </h2>
+
+<h3 style="color: orange;"> {{restaurantDetails.name}} </h3>
+<img style="width:50%;height:50vh" src= "{{restaurantDetails.images.[1].url}}">
+<img style="width:50%;height:50vh" src= "{{restaurantDetails.images.[2].url}}">
+<img style="width:50%;height:50vh" src= "{{restaurantDetails.images.[4].url}}">
+
+
+<div> 
+<p>Phone number: {{restaurantDetails.phoneNumber}}</p>
+<p>Address: 
+    <a style="color: black;"> {{restaurantDetails.location.address.street}}</a>
+    <a style="color:black"> {{restaurantDetails.location.address.number}},</a>
+    <a style="color: black;"> {{restaurantDetails.location.address.zipcode}}</a>
+    <a style="color: black;"> {{restaurantDetails.location.address.city}}</a>
+</p>
+<p> In the beautiful district of {{restaurantDetails.location.address.district}}!</p>
+
+<p> Currency: {{restaurantDetails.currency}}</p>
+<p>Review score: {{restaurantDetails.reviewScore}}</p>
+<p> Opening times: {{restaurantDetails.documents.openingTimes.standardOpeningTimes}}</p>
+
+</div>
+
+<button><a style="color: orange;" href='/'>Back to main page</a></button>
+
+
+

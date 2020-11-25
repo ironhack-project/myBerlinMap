@@ -12,10 +12,10 @@ let bounds = [
 	[13.736,52.633] // NE coordinates original 13.492763,52.649208 
 ];
 
-// variable below added to be able to clear the markers 
-// after the user moves the pin to other locations
+// clear the markers after the user moves the pin to other locations
 let markers = [];
 
+// checking URL to display maps
 if (window.location.pathname === '/') {
 	map = new mapboxgl.Map({
 		container: "map",
@@ -33,12 +33,10 @@ if (window.location.pathname === '/') {
 	axios.get('/rawdataCoordinates')
 		.then(response => {
 			let coordinates = response.data
-
 			// console.log(response.data)
 
 			coordinates.forEach((location) => {
 				// console.log(location);
-				// https://docs.mapbox.com/mapbox-gl-js/api/markers/
 				let marker = new mapboxgl.Marker({
 					scale: 1,
 					draggable: false,
@@ -65,7 +63,6 @@ if (window.location.pathname === '/') {
 		doubleClickZoom: true,
 		pitch: 30,
 		maxBounds: bounds
-
 	});
 	
 	var nav = new mapboxgl.NavigationControl(); // is this being used?
@@ -85,14 +82,12 @@ if (window.location.pathname === '/') {
 
 function zoomAndDisplayName (marker) {
 	marker.on("dragend", (data) => {
-		//console.log(`"hello? Is it data?", ${data.target}`);
+		//console.log(`"hello? Is it data?", ${data.target.getLngLat()}`);
 		popup.addTo(map);
 		popup.setLngLat(data.target.getLngLat());
 		popup.setMaxWidth("40px");
 		// if (data.target.getLngLat() === 
-    // popup.setHTML(`hii`
-    // `<h3>location: ${data.target.getLngLat()} </h3>`
-    // )
+		//popup.setHTML(`<h3>location: ${data.target.getLngLat()} </h3>`);
 
 		// clear the pins when the user drop it to another location
 		markers.forEach(marker => {
@@ -100,8 +95,6 @@ function zoomAndDisplayName (marker) {
 		});
 		// gettinf=g coordinates of dropped pin for api call
 		const droppedPin = data.target.getLngLat();
-
-		
 		
 		// adding text to our Div
 		const listingsDiv = document.getElementById('listings');
@@ -124,7 +117,20 @@ function zoomAndDisplayName (marker) {
 					markers.push(newMarker);
 
 					// adding text to our Div
-					listingsDiv.innerHTML += `${merchant.name}`;
+					listingsDiv.innerHTML += `<a class="search-result-title" href="/restaurantDetails/${merchant.id}">${merchant.name}</a>`;
+					listingsDiv.innerHTML += `<p>Restaurant score: ${merchant.reviewScore} / 6</p>`;
+
+					const cuisines = merchant.tagGroups.find(tg => tg.type === 'CUISINE').tags.map((tag) => {
+						return tag.name;
+					});
+					
+					listingsDiv.innerHTML += "<p>";
+					listingsDiv.innerHTML += '<span><strong>Cuisine:</strong> '
+					cuisines.forEach((cuisine) => {
+						listingsDiv.innerHTML += `<span>- ${cuisine} </span>`;
+					});
+					listingsDiv.innerHTML += '</span>';
+				  listingsDiv.innerHTML += "</p>"
 				});
 
     });
@@ -135,24 +141,24 @@ function zoomAndDisplayName (marker) {
 		})
 
 		
-		axios.get('/rawdataCoordinates')
-			.then(response => {
-				// console.log(restaurantList.name)
-				let coordinates = response.data
+		// axios.get('/rawdataCoordinates')
+		// 	.then(response => {
+		// 		// console.log(restaurantList.name)
+		// 		let coordinates = response.data
 				
-				coordinates.forEach((location) => {
-			// console.log(location);
-			// https://docs.mapbox.com/mapbox-gl-js/api/markers/
-				let newMarker = new mapboxgl.Marker({
-					scale: 1,
-					draggable: false,
-					color: "purple",
-					rotation: 10,
-				});
-				newMarker.setLngLat(location);
-				newMarker.addTo(map);
-			});
-		});
+		// 		coordinates.forEach((location) => {
+		// 	// console.log(location);
+		// 	// https://docs.mapbox.com/mapbox-gl-js/api/markers/
+		// 		let newMarker = new mapboxgl.Marker({
+		// 			scale: 1,
+		// 			draggable: false,
+		// 			color: "purple",
+		// 			rotation: 10,
+		// 		});
+		// 		newMarker.setLngLat(location);
+		// 		newMarker.addTo(map);
+		// 	});
+		// });
 // 		axios.get('/rawdatarestaurantNames')
 // 		.then(response => {
 // 			let restaurantNames = response.data
@@ -185,50 +191,50 @@ function zoomAndDisplayName (marker) {
 // 	});
 //   });
 
-function buildLocationList(data) {
+// function buildLocationList(data) {
 
-	data.forEach( (store, i) => {
-		/**
-		 * Create a shortcut for `store.properties`,
-		 * which will be used several times below.
-		 **/
-		// var prop = store.properties; // use our DB strucutre 
-		let restaurant = store
+// 	data.forEach( (store, i) => {
+// 		/**
+// 		 * Create a shortcut for `store.properties`,
+// 		 * which will be used several times below.
+// 		 **/
+// 		// var prop = store.properties; // use our DB strucutre 
+// 		let restaurant = store
 
-		/* Add a new listing section to the sidebar. */
-		var listings = document.getElementById('listings');
-		var listing = listings.appendChild(document.createElement('div'));
-		/* Assign a unique `id` to the listing. */
-		listing.id = "listing-" + restaurant[0][1];	
-		/* Assign the `item` class to each listing for styling. */
-		listing.className = 'item';
+// 		/* Add a new listing section to the sidebar. */
+// 		var listings = document.getElementById('listings');
+// 		var listing = listings.appendChild(document.createElement('div'));
+// 		/* Assign a unique `id` to the listing. */
+// 		listing.id = "listing-" + restaurant[0][1];	
+// 		/* Assign the `item` class to each listing for styling. */
+// 		listing.className = 'item';
 
-		/* Add the link to the individual listing created above. */
-		var link = listing.appendChild(document.createElement('a'));
-		link.href = '#';
-		link.className = 'title';
-		link.id = "link-" + prop.id;
-		link.innerHTML = prop.address;
+// 		/* Add the link to the individual listing created above. */
+// 		var link = listing.appendChild(document.createElement('a'));
+// 		link.href = '#';
+// 		link.className = 'title';
+// 		link.id = "link-" + prop.id;
+// 		link.innerHTML = prop.address;
 
-		// /* Add details to the individual listing. */
-		// var details = listing.appendChild(document.createElement('div'));
-		// details.innerHTML = prop.city;
-		// if (prop.phone) {
-		// details.innerHTML += ' · ' + prop.phoneFormatted;
-		// }
-	});
-    //for buildLocationList inserts, probably to be removed in favor of juliana's stuff above 
-		// /* Add the link to the individual listing created above. */
-		// var link = listing.appendChild(document.createElement('a'));
-		// link.href = '#';
-		// link.className = 'title';
-		// link.id = "link-" + prop.id;
-		// link.innerHTML = prop.address;
+// 		// /* Add details to the individual listing. */
+// 		// var details = listing.appendChild(document.createElement('div'));
+// 		// details.innerHTML = prop.city;
+// 		// if (prop.phone) {
+// 		// details.innerHTML += ' · ' + prop.phoneFormatted;
+// 		// }
+// 	});
+//     //for buildLocationList inserts, probably to be removed in favor of juliana's stuff above 
+// 		// /* Add the link to the individual listing created above. */
+// 		// var link = listing.appendChild(document.createElement('a'));
+// 		// link.href = '#';
+// 		// link.className = 'title';
+// 		// link.id = "link-" + prop.id;
+// 		// link.innerHTML = prop.address;
 
-		/* Add details to the individual listing. */
-// 		var details = listing.appendChild(document.createElement('div'));
-// 		details.innerHTML =  'Name ' + restaurant[0];
-// 		// details.innerHTML += '';
-// 		});
-}
+// 		/* Add details to the individual listing. */
+// // 		var details = listing.appendChild(document.createElement('div'));
+// // 		details.innerHTML =  'Name ' + restaurant[0];
+// // 		// details.innerHTML += '';
+// // 		});
+// }
   

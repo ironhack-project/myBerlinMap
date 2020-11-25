@@ -9,7 +9,7 @@ Below you'll find our specially curated list of restaurants.
 <input type="text" id="userSearch" onkeyup="searchList()" 
 placeholder="Search for a restaurant.." title="Type in a name">
   
-{{#with userSearch}}
+{{!-- {{#with userSearch}}
   <ul>
     {{#each restaurantList}}
           <li>
@@ -17,7 +17,7 @@ placeholder="Search for a restaurant.." title="Type in a name">
           </li>
           {{/each}}
   </ul>
-{{/with}}
+{{/with}} --}}
 
 </section>
   
@@ -28,10 +28,10 @@ placeholder="Search for a restaurant.." title="Type in a name">
 
         {{#each restaurantList}}
         <li>
-            <a href="{{id}}"><p><b>{{ name }} </b></a> {{ reviewScore }} stars out of 5.5 <p>
+            <a href="{{id}}"><b>{{ name }} </b></a> {{ reviewScore }} stars out of 5.5
         
             <p>
-              {{#each tagGroups }}
+              {{#each tagGroups}}
                 {{#each this.tags}}
                   {{this.name}}, 
                   {{!-- {{.}} Cuisuine {{lookup}} --}}

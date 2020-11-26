@@ -40,13 +40,21 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
 
 .search-result-title {
   font-size: 1.2em;
-  color: red;
+  color: #d61f26;
   text-decoration: none;
   font-weight: bold;
   line-height: 1.2em;
   padding-top: 10px;
 }
 
-.cuisine::before {
-    content: ", ";
+.bg-light {
+  background-color: #d61f26 !important;
+}
+
+a.nav-link {
+  color: white !important;
+}
+
+a.nav-link:hover {
+  color: rgb(243, 190, 190) !important;
 }

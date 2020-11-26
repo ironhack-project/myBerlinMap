@@ -2,21 +2,28 @@
     Drag the pin to find your perfect Restaurant!
 </h1>
 
-<div style="width: 50%; heigth: 100vh; float: left">
-  {{#each restaurantList}}
-    <p>{{name}}</p>
-  {{/each}}
-</div>
-<div class="container"> 
-<div id="map" style="width: 50%; height: 100vh"></div> 
-
-
-<div class='sidebar'>
-  <div class='heading'>
-   
+<div class="searchMapResults">
+  <div style="width: 50%; heigth: 100vh; float: left">
+    {{#each restaurantList}}
+      <p>{{name}}</p>
+    {{/each}}
   </div>
-  <div id='listings' class='listings'></div>
-</div>
-</div>
 
-<p><button style="padding: 8px 17px;"><a href="/">Go Back</a></button></p>
+  <div class="container"> 
+      <div id="map" style="width: 50%; height: 65vh"> </div> 
+      
+      <br>
+
+      <div class='sidebar'>
+        <div class='heading'>
+    </div>
+  
+      <div id='listings' class='listings'> </div>
+    </div>
+    {{!-- end sidebar --}}
+  </div>
+  {{!-- end container --}}
+</div> 
+{{!-- end serachmapresults --}}
+
+{{!-- <p><button style="padding: 8px 17px;"><a href="/">Go Back</a></button></p> --}}

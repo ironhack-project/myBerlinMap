@@ -1,19 +1,30 @@
-<h1>My list of restaurants</h1>
+<div class="myListTop">
+  <h1>Welcome back! </h1>
+  <p>
+    Here is your list of favorited restaurants
+  </p>
+</div>
 
-
-{{#each result}}
+<div class="myListResults">
   
-  {{#each restaurants}}
-    <h3>restaurant name: {{restaurant.name}}</h3> 
-    {{!-- style="padding-top: 10px" --}}
-    <form action="/mylist/edit/{{restaurant.id}}" name="edit" method="POST">
-      <label for="comment">My notes about the restaurant: </p>
-      <input id="comment" name="comment" type="text" value="{{comment}}"><br><br>
-      <button type="submit">update notes</button>
-    </form>
-    <br><br>
-    <a href="/mylist/delete/{{restaurant.id}}">Remove restaurant from your list</a>
+  {{#each result}}
+    {{#each restaurants}}
+      <div class="myListItem">
+        <h3>{{restaurant.name}}</h3> 
+        {{!-- style="padding-top: 10px" --}}
+        
+        <div class="myListItem">
+          <form action="/mylist/edit/{{restaurant.id}}" name="edit" method="POST">
+            <label for="comment">My notes about the restaurant: </p>
+            <input id="comment" name="comment" type="text" value="{{comment}}"><br><br>
+            <button type="submit">update notes</button>
+          </form>
+          <br><br>
+          <a href="/mylist/delete/{{restaurant.id}}">Remove restaurant from your list</a>
+        </div>
+      </div>
+    {{/each}}
+    
+  
   {{/each}}
-  
-
-{{/each}}
+</div>

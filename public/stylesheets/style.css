@@ -79,13 +79,37 @@ footer {
   margin: 0 50px; }
 
 .rene {
-  font-style: italic;
-  line-height: 0; }
+  font-style: italic; }
 
 .rene img {
   margin: 0 35%; }
 
 .auth {
   padding: 20vh; }
+
+.myListTop {
+  padding: 2%; }
+
+.myListResults {
+  border: 2px solid blue;
+  padding: 2%;
+  align-items: base;
+  display: flex;
+  flex-direction: column;
+  flex-direction: wrap;
+  max-width: 75vw; }
+
+.myListItem {
+  justify-content: space-around;
+  padding: 5%;
+  border: 1px solid green;
+  align-items: center;
+  display: inline-flex; }
+
+.myListItem h3 {
+  border: 1px solid blue;
+  padding: 20px 20px 20px 20px;
+  margin: 0 50px;
+  align-items: center; }
 
 /*# sourceMappingURL=style.css.map */

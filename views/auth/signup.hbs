@@ -1,4 +1,4 @@
-<form action="/signup" method="POST">
+<form style="padding-top: 40px;" action="/signup" method="POST">
 
 <p>
     <label for="username">Username</label>
@@ -15,3 +15,12 @@
 </p>
 
 </form>
+
+
+{{#if message}}
+<p style="color: red;">{{message}}</p>
+{{/if}}
+
+
+<button style="margin-top:100px"><a href="/">Back to main page</a></button>
+

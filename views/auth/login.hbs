@@ -1,25 +1,34 @@
-<form style="padding-top:40px;" action="/login" method="POST">
-<p>
-    <label for="username">Username</label>
-    <input type="text" name="username">
-</p>
-<p>
-    <label for="password">Password</label>
-    <input type="password" name="password">
+<body class="text-center text-justify">
+       
+    <section class="auth">
+        <h1 class="h3 mb-3 font-weight-normal">Please log in</h1>
+           
+        {{#if message}}
+        <p style="color: red;">{{message}}</p>
+        {{/if}}
+        
+        <form class="form-signin" action="/login" method="POST">
+            <p>
+                <label for="username" class="sr-only">Username</label>
+                <input type="text" name="username" class="form-control" placeholder="Username">
+            </p>
+            <p>
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Password">
+                
+            </p>
+            <p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+            
+            </p>
+        
+        </form>
+        Need an account? <a href="/signup">Sign up</a>
+    </section>
+    {{!-- Need an account? <a href="/login">Login</a> --}}
+
+{{!-- <button class="btn btn-sm btn-secondary btn-block"><a href="/">Go back to main page</a></button> --}}
     
-</p>
-<p>
-    <button type="submit">Log in</button>
-</p>
+    
 
-</form>
-
-{{#if message}}
-<p style="color: red;">{{message}}</p>
-{{/if}}
-
-<br>
-
-<button style="margin-top:100px"><a href="/">Back to main page</a></button>
-
-
+</body>

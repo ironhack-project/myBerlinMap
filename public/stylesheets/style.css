@@ -1,12 +1,10 @@
 body {
-  padding: 50px;
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
   color: #cd7e63; }
 
-/* The page is split between map and sidebar - the sidebar gets 1/3, map
-gets 2/3 of the page. You can adjust this to your personal liking. */
 .sidebar {
   width: 32%;
   float: left;
@@ -31,7 +29,7 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
 
 .map {
   border-left: 1px solid #fff;
-  float: left;
+  float: right;
   width: 66.6666%;
   height: 80vh;
   margin-left: 10px;
@@ -56,6 +54,15 @@ a.nav-link {
 
 a.nav-link:hover {
   color: #f3bebe !important; }
+
+footer {
+  background: #F1FAEE;
+  padding: 0;
+  margin: 0;
+  height: 100%; }
+
+.auth {
+  padding: 20vh; }
 
 .blabla {
   color: #cd7e63;

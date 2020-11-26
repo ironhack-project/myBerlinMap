@@ -1,26 +1,31 @@
-<form style="padding-top: 40px;" action="/signup" method="POST">
 
-<p>
-    <label for="username">Username</label>
-    <input type="text" name="username">
-</p>
+<body class="text-center text-justify">
+       
+    <section class="auth">
+        <h1 class="h3 mb-3 font-weight-normal">Create an account</h1>
+           
+        {{#if message}}
+        <p style="color: red;">{{message}}</p>
+        {{/if}}
+        
+        <form class="form-signin" action="/login" method="POST">
+            <p>
+                <label for="username" class="sr-only">Username</label>
+                <input type="text" name="username" class="form-control" placeholder="Username">
+            </p>
+            <p>
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Password">
+                
+            </p>
+            <p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Create account</button>
+            
+            </p>
+        Already have an account? <a href="/login">Login</a>
+        </form>
+    </section>
+</body>
 
-<p>
-    <label for="password">Password</label>
-    <input type="password" name="password">
-</p>
 
-<p>
-    <button type="submit">Sign up</button>
-</p>
-
-</form>
-
-
-{{#if message}}
-<p style="color: red;">{{message}}</p>
-{{/if}}
-
-
-<button style="margin-top:100px"><a href="/">Back to main page</a></button>
 

@@ -40,18 +40,31 @@
             <li class="nav-item">
               <a class="nav-link" href="/all">All Restaurants</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/login">Log in</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/signup">Sign up</a>
-            </li>
+
+            {{#unless user}}
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Log in</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/signup">Sign up</a>
+              </li>
+
+            {{else}}
+
+              <li class="nav-item">
+               <a class="nav-link" href="/logout">Log in</a>
+              </li>
+
+            {{/unless}}
+            
             {{!-- <li class="nav-item">
               <a class="nav-link disabled" href="#">Disabled</a>
             </li> --}}
           </ul>
         </div>
       </nav>
+
+
       {{{body}}}
 
     {{!-- </div> --}}

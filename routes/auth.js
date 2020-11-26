@@ -14,16 +14,19 @@ router.get('/login' , (req, res) => {
 });
 
 router.post('/login', (req, res, next) => {
+    console.log('hello! validating credentails...')
     const { username, password } = req.body;
     User.findOne({ username: username })
       .then(found => {
         if (found === null) {
           res.render('./auth/login', { message: 'Invalid credentials' })
         }
+
         if (bcrypt.compareSync(password, found.password)) {
           req.session.user = found;
           console.log('Login successfull! Redirecting...')
           res.redirect('./');
+          
         } else {
           res.render('./auth/login', { message: 'Invalid credentials' })
         }

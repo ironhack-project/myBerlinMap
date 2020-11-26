@@ -31,7 +31,8 @@ router.get('/', (req, res, next) => {
         res.render('index', { restaurantList , user : loggedinUser })
       } else {
         res.render('index', { restaurantList , user : loggedinUser })
-    }})
+    }
+  })
 });
 
 
@@ -54,15 +55,63 @@ router.get('/restaurantDetails/:id', (req,res,next) => {
     }
    })
 })
+//with log in check
+
+// if (req.session.user) {
+//   next();
+// } else {
+//   res.redirect('/login');
+// }
+
+// router.get('/search',(req,res, next) => {
+
+//   if (req.session.user) {
+//     axios.get('https://api.quandoo.com/v1/merchants?place=Berlin&radius=10&capacity=2&offset=0&limit=10000')
+//       .then(response => {
+//         const restaurantList = response.data.merchants;
+//         const loggedinUser = req.session.user;
+//         res.render('search', { restaurantList, user: loggedinUser })
+//       }
+//     } else {
+//     axios.get('https://api.quandoo.com/v1/merchants?place=Berlin&radius=10&capacity=2&offset=0&limit=10000')
+//       .then(response => {
+//       const restaurantList = response.data.merchants;
+//       const loggedinUser = req.session.user;
+//       res.render('search', { restaurantList, user: loggedinUser })
+//       }
+//   }
+
+  
+//   // axios.get('https://api.quandoo.com/v1/merchants?place=Berlin&radius=10&capacity=2&offset=0&limit=10000')
+//   //   .then(response => {
+//   //   const restaurantList = response.data.merchants;
+//   //   const loggedinUser = req.session.user;
+//   //   res.render('search', { restaurantList })
+//   });
+// });
+
 
 router.get('/search',(req,res, next) => {
-  res.render ('search')
-  axios.get('https://api.quandoo.com/v1/merchants?place=Berlin&radius=10&capacity=2&offset=0&limit=10000')
-    .then(response => {
-    const restaurantList = response.data.merchants;
-    res.render('search', { restaurantList })
-  });
+  const loggedinUser = req.session.user;
+  if (req.session.user) {
+    axios.get('https://api.quandoo.com/v1/merchants?place=Berlin&radius=10&capacity=2&offset=0&limit=10000')
+      .then(response => {
+        const restaurantList = response.data.merchants;
+        const loggedinUser = req.session.user;
+        res.render('search', { restaurantList, user: loggedinUser })
+    });
+  // res.render ('search',  {user: loggedinUser })
+  } else{
+    axios.get('https://api.quandoo.com/v1/merchants?place=Berlin&radius=10&capacity=2&offset=0&limit=10000')
+      .then(response => {
+        const restaurantList = response.data.merchants;
+        const loggedinUser = req.session.user;
+        res.render('search', { restaurantList, user: loggedinUser })
+    });
+  }
 });
+
+
 
 //routes requiring loginCheck=======================
 router.get('/private', loginCheck(), (req, res, next) => {

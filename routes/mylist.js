@@ -11,7 +11,12 @@ router.get('/mylist', async (req, res, next) => {
       const restaurants = await Promise.all(
           myRestaurants.map(fetchRestaurant),
       );
-      res.render('./restaurants/mylist', { result: [{_id, restaurants}] });
+      const loggedinUser = req.session.user;
+      if (req.session.user) {
+        res.render('./restaurants/mylist', { result: [{_id, restaurants}] , user: loggedinUser});
+      } else {
+        res.render('./restaurants/mylist', { result: [{_id, restaurants}] , user: loggedinUser});
+      }
   } catch (error) {
       next(error);
   }

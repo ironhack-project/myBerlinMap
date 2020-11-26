@@ -118,31 +118,29 @@ footer {
 }
 
 .myListResults {
-  border: 2px solid blue;
   padding: 2%;
   align-items:base;
   // align-content: center;
   display: flex;
   flex-direction: column;
   flex-direction: wrap;
-  max-width: 75vw;
+  // max-width: 75vw;
   // margin-bottom: 5%;
+  width:100vw;
+  background: #869489;
 }
 
 .myListItem {
-  // display:flex;
-  justify-content:space-around;
-  padding: 5%;
-  border: 1px solid green;
-  // align-content: center;
+  justify-content:space-evenly;
   align-items: center;
   display: inline-flex;
+  background: white;
+  padding: 10px;
+  margin: 10px;
   
 }
 
 .myListItem h3 { 
-  border: 1px solid blue;
-  padding: 20px 20px 20px 20px;
-  margin: 0 50px;
   align-items:center;
+  width: 20vw;
 }

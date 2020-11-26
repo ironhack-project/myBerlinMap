@@ -1,46 +1,79 @@
 #!/usr/bin/env node
 
 const http = require('http');
+const { createApp } = require('../app');
 
-let app = require('../app');
+const { PORT } = process.env;
 
-// catch 404 and render a not-found.hbs template
-app.use((req, res, next) => {
-  res.status(404);
-  res.render('not-found');
-});
+function kill(code) {
+  setTimeout(() => {
+    process.exit(code);
+  }, 500);
+}
 
-app.use((err, req, res, next) => {
-  // always log the error
-  console.error('ERROR', req.method, req.path, err);
+(async () => {
+    try {
+        const app = await createApp();
+        // catch 404 and render a not-found.hbs template
+        app.use((req, res, next) => {
+            res.status(404);
+            res.render('not-found');
+        });
 
-  // only render if the error ocurred before sending the response
-  if (!res.headersSent) {
-    res.status(500);
-    res.render('error');
-  }
-});
+        app.use((err, req, res, next) => {
+            // always log the error
+            console.error('ERROR', req.method, req.path, err);
 
-let server = http.createServer(app);
+            // only render if the error ocurred before sending the response
+            if (!res.headersSent) {
+                res.status(500);
+                res.render('error');
+            }
+        });
 
-server.on('error', error => {
-  if (error.syscall !== 'listen') { throw error }
+        let server = http.createServer(app);
 
-  // handle specific listen errors with friendly messages
-  switch (error.code) {
-    case 'EACCES':
-      console.error(`Port ${process.env.PORT} requires elevated privileges`);
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(`Port ${process.env.PORT} is already in use`);
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
-});
-
-server.listen(process.env.PORT, () => {
-  console.log(`Listening on http://localhost:${process.env.PORT}`);
-});
+        await new Promise((resolve, reject) => {
+            let errorHandler, listeningHandler;
+            const callback = (error) => {
+                if (errorHandler) server.off('error', errorHandler);
+                if (listeningHandler) server.off('listening', listeningHandler);
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve();
+                }
+            }
+            try {
+                errorHandler = (error) => {
+                    const { message, syscall, code } = error;
+                    if (error.syscall !== 'listen') {
+                        callback(new Error(`Got error from server which was not triggered by listen: ${error.message}`))
+                    } else if (code === 'EACCES') {
+                        callback(new Error(`Port ${PORT} requires elevated privileges`))
+                    } else if (code === 'EADDRINUSE') {
+                        callback(new Error(`Port ${PORT} is already in use`))
+                    } else {
+                        callback(error);
+                    }
+                };
+                listeningHandler = () => {
+                    callback();
+                }
+                server.on('error', errorHandler);
+                server.on('listening', listeningHandler);
+                server.listen(PORT);
+            } catch (error) {
+                callback(error);
+            }
+        });
+        server.on('error', (error) => {
+          console.error(`Server received error. He will kill himself`, error);
+          kill(1);
+        });
+        console.log(`Server startup successful`);
+    } catch (error) {
+        console.error(`Server startup failed. He will kill the rest`, error);
+        kill(1);
+    }
+})();

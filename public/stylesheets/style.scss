@@ -102,7 +102,7 @@ footer {
 
 .rene {
   font-style: italic;
-  line-height: 0;
+  // line-height: 1;
 }
 .rene img {
   margin: 0 35%;
@@ -110,4 +110,37 @@ footer {
 
 .auth {
   padding: 20vh;
+}
+
+.myListTop {
+  // border: 2px solid green;
+  padding: 2%
+}
+
+.myListResults {
+  padding: 2%;
+  align-items:base;
+  // align-content: center;
+  display: flex;
+  flex-direction: column;
+  flex-direction: wrap;
+  // max-width: 75vw;
+  // margin-bottom: 5%;
+  width:100vw;
+  background: #869489;
+}
+
+.myListItem {
+  justify-content:space-evenly;
+  align-items: center;
+  display: inline-flex;
+  background: white;
+  padding: 10px;
+  margin: 10px;
+  
+}
+
+.myListItem h3 { 
+  align-items:center;
+  width: 20vw;
 }

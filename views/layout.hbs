@@ -31,9 +31,9 @@
         
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="#">My Map</a>
-            </li>
+
+          {{#unless user}}
+       
             <li class="nav-item">
               <a class="nav-link" href="/search">Search by location</a>
             </li>
@@ -41,25 +41,33 @@
               <a class="nav-link" href="/all">All Restaurants</a>
             </li>
 
-            {{#unless user}}
-              <li class="nav-item">
-                <a class="nav-link" href="/login">Log in</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/signup">Sign up</a>
-              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Log in</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signup">Sign up</a>
+            </li>
 
-            {{else}}
+          {{else}} 
+          {{!-- loggedin user sees --}}
 
-              <li class="nav-item">
-               <a class="nav-link" href="/logout">Log in</a>
-              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">My Map</a>
+            </li>
+        
+            <li class="nav-item">
+              <a class="nav-link" href="/search">Search by location</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/all">All Restaurants</a>
+            </li>
 
-            {{/unless}}
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Log out</a>
+            </li>
+
+          {{/unless}}
             
-            {{!-- <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li> --}}
           </ul>
         </div>
       </nav>
@@ -75,5 +83,22 @@
   <script src="/javascripts/mapbox.js"></script>
   <script src="/javascripts/script.js"></script>
 </body>
+<footer>
+
+  <div class="container">
+  <div class="d-flex justify-content-between align-items-center">
+    <img alt="" class="mb-3 mt-3" src="https://www2.ironhack.com/l/688303/2020-10-20/z3pq8/688303/1603192447mSEPPtvW/IRONHACK_PRIMARY_LOGO_RGB.svg" style="width:105px;" width="105">
+    <p>An application created in 
+      <br>November 2020 by:
+      <ul class="list-unstyled">
+        <li>Agustina</li>
+        <li>Juliana</li>
+        <li>Kara</li>
+      </ul>
+      <img class="karasIcon" style="width: 35px; height: 100%" src="./images/pepperJump.png" alt="kara's icon">
+    </p>
+  </div>  
+  </div>
+</footer>
 </html>
 

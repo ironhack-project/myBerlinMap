@@ -1,5 +1,5 @@
-<h1>
-    Search Page <button><a href="/">Go Back</a></button>
+<h1 style="color:rgb(205, 126, 99); font-size: 25px; text-align:center; margin-top:20px">
+    Drag the pin to find your perfect Restaurant!
 </h1>
 
 <div style="width: 50%; heigth: 100vh; float: left">
@@ -7,16 +7,21 @@
     <p>{{name}}</p>
   {{/each}}
 </div>
+<div class="container"> 
+<div id="map" style="width: 50%; height: 100vh"></div> 
 
-<div id="map" style="width: 50%; height: 100vh"></div>
 
-<p><button><a href="/">Go Back</a></button></p>
 
 <div class='sidebar'>
   <div class='heading'>
-    <h1>Our locations</h1>
+   
   </div>
   <div id='listings' class='listings'></div>
 </div>
+</div>
 
-<div id='map' class='map pad2'>Map</div>
+<p><button style="padding: 8px 17px;"><a href="/">Go Back</a></button></p>
+
+
+{{!-- <div id='map' class='map pad2'>Map</div> --}}
+

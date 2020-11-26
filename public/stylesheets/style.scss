@@ -4,7 +4,7 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: rgb(205, 126, 99);
 }
 
 
@@ -24,6 +24,24 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
   // outline: 1px solid red;
   width: 32%;
   float: left;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-align-content: stretch;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
 }
 
 .map {
@@ -40,7 +58,7 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
 
 .search-result-title {
   font-size: 1.2em;
-  color: #d61f26;
+  color :rgb(205, 126, 99);
   text-decoration: none;
   font-weight: bold;
   line-height: 1.2em;
@@ -48,7 +66,8 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
 }
 
 .bg-light {
-  background-color: #d61f26 !important;
+  background-color: rgb(134, 148, 137)!important;
+  font-size: 17px;
 }
 
 a.nav-link {
@@ -58,3 +77,22 @@ a.nav-link {
 a.nav-link:hover {
   color: rgb(243, 190, 190) !important;
 }
+
+.blabla {
+color: rgb(205, 126, 99);
+font-size: 20px;
+}
+
+.container {
+  display:flex;
+  justify-content: space-between;
+  margin-top: 50px;
+
+}
+
+
+
+
+
+
+

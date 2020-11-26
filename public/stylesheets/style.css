@@ -55,10 +55,6 @@ a.nav-link {
 a.nav-link:hover {
   color: #f3bebe !important; }
 
-.blabla {
-  color: #cd7e63;
-  font-size: 20px; }
-
 .container {
   display: flex;
   justify-content: space-between;
@@ -112,7 +108,44 @@ footer {
   width: 20vw; }
 
 .searchMapResults {
-  border: 2px solid blue;
   padding-bottom: 60px; }
+
+.indexbutton {
+  background: white; }
+
+.indexbutton a:link {
+  color: #cd7e63; }
+
+.indexbutton:hover, .indexbutton a:hover {
+  background: #cd7e63;
+  color: white; }
+
+.index {
+  padding: 5px 15px;
+  text-align: center; }
+
+.carousel img {
+  height: 200px;
+  align-content: center;
+  justify-content: center; }
+
+.details {
+  padding: 5px 8px;
+  margin: 0px 10px; }
+
+.commentOnDetail {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  padding-top: 5px;
+  padding-bottom: 15px; }
+
+.details p {
+  color: #5c6a5f;
+  font-size: 16px; }
+
+.detailsBody {
+  padding-bottom: 15px; }
 
 /*# sourceMappingURL=style.css.map */

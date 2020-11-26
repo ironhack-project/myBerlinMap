@@ -1,9 +1,8 @@
-<h2 style="text-align: center;"> RESTAURANT DETAILS </h2>
-
-<h3 style="color: orange;"> {{restaurantDetails.name}} </h3>
+<div style="padding-top: 10px"> 
+<h3 style="color:rgb(205, 126, 99);"> {{restaurantDetails.name}} </h3>
 <img style="width:50%;height:50vh" src= "{{restaurantDetails.images.[1].url}}">
 <img style="width:50%;height:50vh" src= "{{restaurantDetails.images.[2].url}}">
-<img style="width:50%;height:50vh" src= "{{restaurantDetails.images.[4].url}}">
+</div>
 
 
 <div> 
@@ -18,11 +17,11 @@
 
 <p> Currency: {{restaurantDetails.currency}}</p>
 <p>Review score: {{restaurantDetails.reviewScore}}</p>
-<p> Opening times: {{restaurantDetails.documents.openingTimes.standardOpeningTimes}}</p>
+
 
 </div>
 
-<button><a style="color: orange;" href='/'>Back to main page</a></button>
+<button><a style="color:rgb(158, 61, 82)" href='/'>Back to main page</a></button>
 
 
 

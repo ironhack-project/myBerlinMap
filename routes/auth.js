@@ -5,12 +5,12 @@ const User = require ('../models/User');
 
 
 router.get('/signup' , (req,res) => {
-    res.render('./auth/signup');
+    res.render('auth/signup');
 });
 
 
 router.get('/login' , (req, res) => {
-    res.render ('/auth/login');
+    res.render ('auth/login');
 });
 
 router.post('/login', (req, res, next) => {
@@ -18,14 +18,14 @@ router.post('/login', (req, res, next) => {
     User.findOne({ username: username })
       .then(found => {
         if (found === null) {
-          res.render('./auth/login', { message: 'Invalid credentials' })
+          res.render('auth/login', { message: 'Invalid credentials' })
         }
         if (bcrypt.compareSync(password, found.password)) {
           req.session.user = found;
           console.log('Login successfull! Redirecting...')
           res.redirect('./');
         } else {
-          res.render('./auth/login', { message: 'Invalid credentials' })
+          res.render('auth/login', { message: 'Invalid credentials' })
         }
       })
       .catch(err => {
@@ -36,15 +36,15 @@ router.post('/login', (req, res, next) => {
 router.post('/signup', (req, res, next) => {
   const { username, password } = req.body;
   if (password.length < 8) {
-    res.render('./auth/signup', { message: 'Your password must be 8 characters minimum' });
+    res.render('auth/signup', { message: 'Your password must be 8 characters minimum' });
   }
   if (username === '') {
-    res.render('./auth/signup', { message: 'This user name has already been taken' });
+    res.render('auth/signup', { message: 'This user name has already been taken' });
   }
   User.findOne({ username: username })
     .then(found => {
       if (found !== null) {
-        res.render('./auth/signup', { message: 'This Username is already taken' })
+        res.render('auth/signup', { message: 'This Username is already taken' })
       } else {
         const salt = bcrypt.genSaltSync();
         console.log(salt);

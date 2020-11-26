@@ -41,12 +41,17 @@ router.get('/rawdataCoordinates', (req,res,next) => {
 
 router.get('/restaurantDetails/:id', (req,res,next) => {
   const restaurantId = req.params.id;
+  const loggedinUser = req.session.user;
   axios.get(`https://api.quandoo.com/v1/merchants/${restaurantId}`)
   .then(response => {
     //console.log(response.data.name);
     const restaurantDetails = response.data
     console.log(restaurantDetails);
-    res.render('restaurantDetails' , {restaurantDetails});
+    if (req.session.user) {
+      res.render('restaurantDetails' , {restaurantDetails,  user : loggedinUser } );
+    }else {
+      res.render('restaurantDetails' , {restaurantDetails, user : loggedinUser } );
+    }
    })
 })
 

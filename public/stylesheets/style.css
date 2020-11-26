@@ -55,15 +55,6 @@ a.nav-link {
 a.nav-link:hover {
   color: #f3bebe !important; }
 
-footer {
-  background: #F1FAEE;
-  padding: 0;
-  margin: 0;
-  height: 100%; }
-
-.auth {
-  padding: 20vh; }
-
 .blabla {
   color: #cd7e63;
   font-size: 20px; }
@@ -72,5 +63,29 @@ footer {
   display: flex;
   justify-content: space-between;
   margin-top: 50px; }
+
+footer {
+  background: #F1FAEE;
+  padding: 0;
+  margin: 0;
+  height: 100%; }
+
+.footerContainer {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 50px; }
+
+.rene {
+  font-style: italic;
+  line-height: 0; }
+
+.rene img {
+  margin: 0 35%; }
+
+.auth {
+  padding: 20vh; }
 
 /*# sourceMappingURL=style.css.map */

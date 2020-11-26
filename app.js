@@ -3,6 +3,8 @@ require('dotenv').config();
 const mongoose     = require('mongoose');
 const { initApp }  = require('./init-app.js');
 
+const { MONGODB_URI } = process.env;
+
 async function connectDb(mongoUrl) {
   return mongoose.connect(mongoUrl, {
     useCreateIndex: true,
@@ -12,9 +14,10 @@ async function connectDb(mongoUrl) {
 }
 
 async function createApp() {
-  const mongooseConnection = await connectDb(process.env.MONGODB_URI);
+  const { connection: mongooseConnection } = await connectDb(MONGODB_URI);
+  console.log(`... mongo connection established ...`);
   const app = await initApp({ mongooseConnection });
-  console.log('App created');
+  console.log('... app created ...');
   return app;
 
 }

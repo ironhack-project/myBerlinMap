@@ -67,21 +67,6 @@ a.nav-link:hover {
   color: rgb(243, 190, 190) !important;
 }
 
-footer {
-  background:#F1FAEE;
-  padding :0 ;
-  margin: 0;
-  height: 100%;
-}
-
-// F1FAEE light green
-// #A8DADC a nice blue
-
-.auth {
-  // height: 80%;
-  // border: 1px solid black;
-  padding: 20vh;
-}
 .blabla {
 color: rgb(205, 126, 99);
 font-size: 20px;
@@ -94,3 +79,35 @@ font-size: 20px;
 
 }
 
+
+footer {
+  background:#F1FAEE;
+  padding :0 ;
+  margin: 0;
+  height: 100%;
+}
+
+// F1FAEE light green
+// #A8DADC a nice blue
+
+.footerContainer {
+  display:flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  // border: 2px solid blue;
+  margin: 0 50px;
+}
+
+.rene {
+  font-style: italic;
+  line-height: 0;
+}
+.rene img {
+  margin: 0 35%;
+}
+
+.auth {
+  padding: 20vh;
+}

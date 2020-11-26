@@ -7,7 +7,7 @@ const MyList = require('../models/MyList');
 
 router.get('/mylist', async (req, res, next) => {
   try {
-      const { __id, restaurants: myRestaurants } = await MyList.findOne({userId: req.session.user._id});
+      const { _id, restaurants: myRestaurants } = await MyList.findOne({userId: req.session.user._id});
       const restaurants = await Promise.all(
           myRestaurants.map(fetchRestaurant),
       );

@@ -4,14 +4,15 @@
 {{#each result}}
   
   {{#each restaurants}}
-    <h3 style="padding-top: 10px">restaurant name: {{restaurant.name}}</h3>
+    <h3>restaurant name: {{restaurant.name}}</h3> 
+    {{!-- style="padding-top: 10px" --}}
     <form action="/mylist/edit/{{restaurant.id}}" name="edit" method="POST">
       <label for="comment">My notes about the restaurant: </p>
       <input id="comment" name="comment" type="text" value="{{comment}}"><br><br>
       <button type="submit">update notes</button>
     </form>
     <br><br>
-    <a href="/mylist/delete/{{restaurant.id}}">Delete restaurant</a>
+    <a href="/mylist/delete/{{restaurant.id}}">Remove restaurant from your list</a>
   {{/each}}
   
 

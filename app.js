@@ -11,7 +11,7 @@ const path         = require('path');
 
 
 mongoose
-  .connect(process.env.MONGODB_URI, {
+  .connect('mongodb://localhost/my-berlin-map', {
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -83,6 +83,9 @@ app.use('/', auth)
 
 const restaurants = require('./routes/restaurants');
 app.use('/', restaurants)
+
+const mylist = require('./routes/mylist');
+app.use('/', mylist)
 
 
 module.exports = app;

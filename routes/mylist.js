@@ -19,14 +19,31 @@ router.get('/mylist', async (req, res, next) => {
 
 
 async function fetchRestaurant({ _id, restaurantId, comment }) {
-  const url = `https://api.quandoo.com/v1/merchants/${restaurantId}`;
-  console.log(url);
-  const { data: restaurant } = await axios.get(url);
-  return {
-    _id,
-    restaurant,
-    comment,
-  };
+  try {
+    const url = `https://api.quandoo.com/v1/merchants/${restaurantId}`;
+    console.log(url);
+    const { data: restaurant } = await axios.get(url);
+    return {
+      _id,
+      restaurant,
+      comment,
+    };
+  } catch (error) {
+    if (error.response) {
+      const {
+        status,
+        data: serverResponse = 'No server response',
+      } = error.response;
+      if (!status) {
+        throw new Error(`Did not receive http code from server: ${serverResponse}`);
+      }
+      throw new Error(serverResponse);
+    } else if (error.request) {
+      throw new Error(`No server response: ${error.message}`);
+    } else {
+      throw new Error(`Failed to execute request: ${error.message}`);
+    }
+  }
 }
 
 router.post('/mylist/add/:id',(req,res,next) => {

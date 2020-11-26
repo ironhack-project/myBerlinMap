@@ -13,8 +13,10 @@ async function connectDb(mongoUrl) {
 
 async function createApp() {
   const mongooseConnection = await connectDb(process.env.MONGODB_URI);
-  await initApp({ mongooseConnection });
+  const app = await initApp({ mongooseConnection });
   console.log('App created');
+  return app;
+
 }
 
 module.exports = {

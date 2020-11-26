@@ -14,7 +14,7 @@ const MongoStore = require('connect-mongo')(session);
 
 //==========================================================================
 
-function initApp({ mongooseConnection }) {
+async function initApp({ mongooseConnection }) {
     const app = express();
 
     // Middleware Setup
@@ -59,8 +59,8 @@ function initApp({ mongooseConnection }) {
 
     const restaurants = require('./routes/restaurants');
     app.use('/', restaurants)
-
-};
+    return app;
+}
 
 //==========================================================================
 

@@ -111,4 +111,8 @@ footer {
   align-items: center;
   width: 20vw; }
 
+.searchMapResults {
+  border: 2px solid blue;
+  padding-bottom: 60px; }
+
 /*# sourceMappingURL=style.css.map */

@@ -25,7 +25,8 @@
 
 
 
-<div style="color:rgb(134, 148, 137);; font-size: 16px;> 
+<div style="color:rgb(134, 148, 137);; font-size: 16px"> 
+{{#unless user}}
 <p>Phone number: {{restaurantDetails.phoneNumber}}</p>
 <p>Address: 
     <a style="color:rgb(134, 148, 137);"> {{restaurantDetails.location.address.street}}</a>
@@ -35,14 +36,34 @@
 </p>
 <p> In the beautiful district of {{restaurantDetails.location.address.district}}!</p>
 
-<p> Currency: {{restaurantDetails.currency}}</p>
+<p>Currency: {{restaurantDetails.currency}}</p>
 <p>Review score: {{restaurantDetails.reviewScore}}</p>
 
+{{else}}
+{{!-- logged in user sees: --}}
+<p>Phone number: {{restaurantDetails.phoneNumber}}</p>
+<p>Address: 
+    <a style="color:rgb(134, 148, 137);"> {{restaurantDetails.location.address.street}}</a>
+    <a style="color:rgb(134, 148, 137);"> {{restaurantDetails.location.address.number}},</a>
+    <a style="color:rgb(134, 148, 137);"> {{restaurantDetails.location.address.zipcode}}</a>
+    <a style="color:rgb(134, 148, 137);"> {{restaurantDetails.location.address.city}}</a>
+</p>
+<p> In the beautiful district of {{restaurantDetails.location.address.district}}!</p>
 
+<p>Currency: {{restaurantDetails.currency}}</p>
+<p>Review score: {{restaurantDetails.reviewScore}}</p>
+
+<form action="/mylist/add/{{restaurantDetails.id}}" method="POST"\>
+    <label for="comments">Comments: </label> 
+    <input id="comments" type="text" name="comments">
+    <button type="submit">Add restaurant to my list</button>
+</form> 
+{{/unless}}
 </div>
 </div>
 
-<button style="margin-top: 60px"><a style="color:rgb(158, 61, 82)" href='/'>Back to main page</a></button>
+
+<button style="margin-top: 60px"><a style="color:rgb(158, 61, 82)" href='/'<>Back to main page</a></button>
 
 {{!-- 
 {{#unless user}}

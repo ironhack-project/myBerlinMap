@@ -15,7 +15,7 @@ Below you'll find our specially curated list of restaurants.
     <ul id="restaurantList">
         {{#each restaurantList}}
         <li>
-            <a href="{{id}}"><b>{{ name }} </b></a> {{ reviewScore }} stars out of 5.5
+            <a href="/restaurantDetails/{{id}}"><b>{{ name }} </b></a> {{ reviewScore }} stars out of 5.5
         
             <p>
               {{#each tagGroups}}
@@ -27,7 +27,7 @@ Below you'll find our specially curated list of restaurants.
             </p>
             
             <p>
-              <a href="{{id}}">
+              <a href="/restaurantDetails/{{id}}">
                 <img src="{{images.[0].url}}" alt=" Selected photo for {{name}}" style="width: 50%; height: 10%">
               </a>
             </p>

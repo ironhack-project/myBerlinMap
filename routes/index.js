@@ -27,11 +27,11 @@ router.get('/', (req, res, next) => {
       const restaurantList = response.data.merchants;
       //added login check details here as adding call directly to get blocked entire page
       //probably can be prettier
-      if (req.session.user) {
+      // if (req.session.user) {
+      //   res.render('index', { restaurantList , user : loggedinUser })
+      // } else {
         res.render('index', { restaurantList , user : loggedinUser })
-      } else {
-        res.render('index', { restaurantList , user : loggedinUser })
-    }
+    // }
   })
 });
 
@@ -48,11 +48,11 @@ router.get('/restaurantDetails/:id', (req,res,next) => {
     //console.log(response.data.name);
     const restaurantDetails = response.data
     console.log(restaurantDetails);
-    if (req.session.user) {
-      res.render('restaurantDetails' , {restaurantDetails,  user : loggedinUser } );
-    }else {
+    // if (req.session.user) {
+    //   res.render('restaurantDetails' , {restaurantDetails,  user : loggedinUser } );
+    // }else {
       res.render('restaurantDetails' , {restaurantDetails, user : loggedinUser } );
-    }
+    // }
    })
 })
 //with log in check

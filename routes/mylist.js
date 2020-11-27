@@ -50,10 +50,11 @@ router.post('/mylist/add/:id',(req,res,next) => {
   const restaurantId = req.params.id;
   const comment = req.body.comments;
   const user = req.session.user;
-  //console.log(restaurantId, comment, user);
+  // console.log(`restaurantId, comment, user`);
 
   MyList.findOne({userId: req.session.user._id})
   .then(myLists => {
+    console.log(myLists)
     if (!myLists) {
       MyList.create({ userId: user._id, restaurants: [
         {        
@@ -74,20 +75,22 @@ router.post('/mylist/add/:id',(req,res,next) => {
         }
         return prev;
       }, false);
-
       if (restaurantExists) {
         return res.redirect('/mylist')
       }
-
       myLists.restaurants.push({
         comment: comment,
         restaurantId: restaurantId
       });
-  
-      MyList.updateOne(myLists)
+
+      console.log('hello kevin, Ive been expecting you')
+      MyList.findByIdAndUpdate( myLists._id, {restaurants: myLists.restaurants})
       .then(() => {
+        console.log('hello jan')
         res.redirect('/mylist')
+      
       })
+
       .catch(err => {
           next(err);
       });

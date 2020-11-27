@@ -67,10 +67,10 @@ a.nav-link:hover {
   color: rgb(243, 190, 190) !important;
 }
 
-.blabla {
-color: rgb(205, 126, 99);
-font-size: 20px;
-}
+// .blabla {
+// color: rgb(205, 126, 99);
+// font-size: 20px;
+// }
 
 .container {
   display:flex;
@@ -151,4 +151,71 @@ footer {
   padding-bottom: 60px;
 }
 
+<<<<<<< HEAD
 
+=======
+.indexbutton {
+  background: white;
+  // color: rgb(205, 126, 99);
+  // padding: 0 50px;
+  // border: 2-px solid black;
+}
+
+.indexbutton a:link{
+  color: rgb(205, 126, 99);
+}
+
+.indexbutton:hover, .indexbutton a:hover {
+  background: rgb(205, 126, 99);
+  color:rgb(255,255,255);
+}
+// .indexbutton a:hover {
+//   background: rgb(205, 126, 99);
+//   color:rgb(255,255,255);
+// }
+.index {
+  padding: 5px 15px;
+  text-align: center;
+}
+
+// a:hover {
+//   background: red;
+// }
+
+
+.carousel img {
+  // display: flex;
+  // padding: 10px;
+  height: 200px;
+  align-content:center ;
+  justify-content: center;
+}
+
+.details {
+  padding: 5px 8px;
+  margin: 0px 10px;
+  // border: 2px solid green;
+}
+
+.commentOnDetail {
+  // border: 3px solid purple;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  // align-items: center;
+  // align-content: center;
+  justify-content:center;
+  padding-top: 5px;
+  padding-bottom: 15px
+}
+
+.details p {
+  color: #5c6a5f; //rgb(93, 102, 95);
+  font-size: 16px
+}
+
+.detailsBody {
+  // border: 3px solid red;
+  padding-bottom: 15px;
+}
+>>>>>>> origin

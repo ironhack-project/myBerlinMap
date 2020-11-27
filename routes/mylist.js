@@ -5,27 +5,13 @@ const User = require('../models/User');
 const MyList = require('../models/MyList');
 
 
-const loginCheck = () => {
-  return (req, res, next) => {
-    if (req.session.user) {
-      next();
-    } else {
-      res.redirect('/login');
-    }
-  }
-}
-router.get('/mylist', loginCheck(), async (req, res, next) => {
+router.get('/mylist', async (req, res, next) => {
   try {
       const { _id, restaurants: myRestaurants } = await MyList.findOne({userId: req.session.user._id});
       const restaurants = await Promise.all(
           myRestaurants.map(fetchRestaurant),
       );
-      // const loggedinUser = req.session.user;
-      // if (req.session.user) {
-      //   res.render('./restaurants/mylist', { result: [{_id, restaurants}] , user: loggedinUser});
-      // } else {
-        res.render('./restaurants/mylist', { result: [{_id, restaurants}] });
-      // }
+      res.render('./restaurants/mylist', { result: [{_id, restaurants}] });
   } catch (error) {
       next(error);
   }

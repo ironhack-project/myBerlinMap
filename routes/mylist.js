@@ -140,7 +140,7 @@ router.post('/mylist/edit/:id',(req,res,next) => {
         return restaurant;
       });
   
-      MyList.updateOne(myLists)
+      MyList.findByIdAndUpdate( myLists._id, {restaurants: myLists.restaurants})
       .then(() => {
         res.redirect('/mylist')
       })

@@ -1,40 +1,45 @@
 
-<p style="color: rgb(205, 126, 99); font-size: 20px; margin-top: 20px;">Find a Restaurant that looks good? Click on the picture to find out more  <p><button><a href="/">Go Back</a></button></p></p>
-  
+  <div class="allSearch">
+    <p>Find a Restaurant that looks good? Click on the picture to find out more  
+      {{!-- <p><button><a href="/">Go Back</a></button></p></p> --}}
+  </div>
 <hr>
 
 <section>
-  <input style="padding: 10px 20px;" type="text" id="userSearch" onkeyup="searchList()" 
-  placeholder="Search for a restaurant..." title="Type in a name">
+  <div class="allSearch">
+    <input type="text" id="userSearch" onkeyup="searchList()" 
+    placeholder="Search for a restaurant..." title="Type in a name">
+  </div>
 </section>
   
 <hr>
 <section style="font-size: 18px;">  
-    <ul id="restaurantList">
-        {{#each restaurantList}}
-        <li>
-            <a href="/restaurantDetails/{{id}}"><b>{{ name }} </b></a> {{ reviewScore }} stars out of 5.5
-        
-            <p>
-              {{#each tagGroups}}
-                {{#each this.tags}}
-                  {{this.name}}, 
-                  {{!-- {{.}} Cuisuine {{lookup}} --}}
-                {{/each}}   
-              {{/each}}
-            </p>
-            
-            <p>
-              <a href="/restaurantDetails/{{id}}">
-                <img src="{{images.[0].url}}" alt=" Selected photo for {{name}}" style="width: 50%; height: 10%">
-              </a>
-            </p>
-          </li> 
-        {{/each}}
-
-      <li><a href="#">test</a></li>
-      <li><a href="#">x</a></li>
-    </ul>
+    <div class="allDetails">
+        <div class="allDetailsText">
+          <ul id="restaurantList">
+              {{#each restaurantList}}
+              <li>
+                  <a href="/restaurantDetails/{{id}}"><b>{{ name }} </b></a> {{ reviewScore }} stars out of 6
+              
+                  <p>
+                    {{#each tagGroups}}
+                      {{#each this.tags}}
+                        {{this.name}}, 
+                        {{!-- {{.}} Cuisuine {{lookup}} --}}
+                      {{/each}}   
+                    {{/each}}
+                  </p>
+              <div class="allImage">
+                <p>
+                  <a href="/restaurantDetails/{{id}}">
+                    <img src="{{images.[0].url}}" alt=" Selected photo for {{name}}" style="width: 50%; height: 10%">
+                  </a>
+                </p>
+              </div>
+            </li> 
+          {{/each}}
+      </ul>
+    </div>
 </section>
 
 

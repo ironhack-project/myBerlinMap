@@ -169,6 +169,7 @@ footer {
 //   background: rgb(205, 126, 99);
 //   color:rgb(255,255,255);
 // }
+
 .index {
   padding: 5px 15px;
   text-align: center;
@@ -213,4 +214,18 @@ footer {
 .detailsBody {
   // border: 3px solid red;
   padding-bottom: 15px;
+}
+
+.allSearchTop , .allSearch{
+  padding : 3vh;
+  // border: 2px solid red;
+  color: rgb(205, 126, 99); 
+  font-size: 20px; 
+  margin-top: 20px;
+  text-align: center;
+}
+
+.allSearch {
+  padding: 10px 20px;
+  // heigh
 }

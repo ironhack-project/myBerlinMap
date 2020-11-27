@@ -148,4 +148,14 @@ footer {
 .detailsBody {
   padding-bottom: 15px; }
 
+.allSearchTop, .allSearch {
+  padding: 3vh;
+  color: #cd7e63;
+  font-size: 20px;
+  margin-top: 20px;
+  text-align: center; }
+
+.allSearch {
+  padding: 10px 20px; }
+
 /*# sourceMappingURL=style.css.map */
